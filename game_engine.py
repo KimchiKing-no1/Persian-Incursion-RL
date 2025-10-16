@@ -213,7 +213,51 @@ class GameEngine:
         p['discard'].append(card)
         p['river'][index] = None
         return True
+    def _on_card_removed_from_river(self, state, side, card_id, to_discard=True):
+        """
+        7-slot river variant:
+        - Find the card in p['river'] (value equals card_id), set that slot to None.
+        - If to_discard: push card_id into p['discard'].
+        - Then compress to the RIGHT and refill from LEFT to 7, reshuffling if needed.
+        """
+        p = self._ensure_player_cards_branch(state, side)
+        river = p['river']
+        discard = p['discard']
+        deck = p['deck']
     
+        # Remove one instance from river (set the slot to None)
+        for i in range(len(river)):
+            if river[i] == card_id:
+                river[i] = None
+                break
+        else:
+            return  # card not found; nothing to do
+    
+        if to_discard:
+            discard.append(card_id)
+    
+        # Compress RIGHT: non-Nones on right, Nones on left
+        cards = [c for c in river if c is not None]
+        holes = 7 - len(cards)
+        river[:] = [None]*holes + cards
+    
+        # Draw helper
+        def draw_one():
+            if not deck:
+                if discard:
+                    self._rng(state).shuffle(discard)
+                    deck[:], discard[:] = discard[:], []
+                else:
+                    return None
+            return deck.pop(0) if deck else None
+    
+        # Refill from LEFT to 7
+        for i in range(7):
+            if river[i] is None:
+                c = draw_one()
+                if c is not None:
+                    river[i] = c
+
     def _end_of_map_turn_river_step(self, state):
         """2.5 River: discard rightmost, compress right, refill from left to 7, reshuffle if needed."""
         for side in ('israel','iran'):
@@ -221,12 +265,12 @@ class GameEngine:
             river = p['river']
             deck = p['deck']
             discard = p['discard']
-    
-            # 1) Discard card in 7th position (index 6) if present
-            if river[6] is not None:
+         
+
+            if len(river) > 6 and river[6] is not None:
                 discard.append(river[6])
                 river[6] = None
-    
+           
             # 2) Compress RIGHT: non-None to the right, Nones on the left
             nones = [x for x in river if x is None]
             cards = [x for x in river if x is not None]
@@ -236,7 +280,7 @@ class GameEngine:
             def draw_one():
                 if not deck:
                     if discard:
-                        self._rng.shuffle(discard)
+                        self._rng(state).shuffle(discard)
                         deck[:], discard[:] = discard[:], []
                     else:
                         return None
@@ -257,9 +301,6 @@ class GameEngine:
         ps.setdefault('discard', [])
         return ps
     # === RIVER / TURN-LIMIT HELPERS ============================================
-
-   
-    
     def _shuffle_in_place(self, lst, state):
         """
         Deterministic shuffle helper. Replace with your RNG using state['rng'] if you have one.
@@ -271,15 +312,6 @@ class GameEngine:
             j = rnd.randint(0, i)
             lst[i], lst[j] = lst[j], lst[i]
     
-  
-    
-    
-    def _start_of_map_turn_fill_river(self, state):
-        """At start of each Map Turn, ensure each side's river is back up to 7."""
-        for side in ("israel", "iran"):
-            self._deal_river_to_seven(state, side)
-    
-    
     def _on_impulse_start(self, state):
         """Reset the per-impulse card play flags for the current player/impulse if you want each side limited per impulse."""
         turn = state["turn"]
@@ -288,12 +320,6 @@ class GameEngine:
         side = turn.get("current_player")
         turn["per_impulse_card_played"][side] = False
     
-    
-    def _on_map_turn_end(self, state):
-        """Call at transition from Night → Morning (before the next Map Turn starts)."""
-        for side in ("israel", "iran"):
-            self._river_end_of_map_turn(state, side)
-
     # --- helpers used by ops / damage ------------------------------------------
     def _get_aircraft_count_for_squadron(self, state, side, squadron_name):
         oob = state.get('oob', {}).get(side, {}).get('squadrons', {})
@@ -339,58 +365,7 @@ class GameEngine:
         # keep or extend with your custom victory logic
         return
 
-    # ====================== RIVER / MARKET (rules-accurate) ====================
-    def _maybe_reshuffle(self, state, side):
-        p = self._ensure_player(state, side)
-        if not p["deck"] and p["discard"]:
-            self._rng(state).shuffle(p["discard"])
-            p["deck"] = list(p["discard"])
-            p["discard"].clear()
-            self._log(state, f"{side} reshuffled their discard pile.")
-
-    def _draw_one(self, state, side):
-        p = self._ensure_player(state, side)
-        if not p["deck"]:
-            self._maybe_reshuffle(state, side)
-        if not p["deck"]:
-            return None
-        return p["deck"].pop()  # treat end as the top
-
-    def _slide_right(self, state, side):
-        # conceptual right-align (representation is dense already)
-        return
-
-    def _top_off_left(self, state, side):
-        p = self._ensure_player(state, side)
-        max_slots = int(self.river_rules.get("slots", 7))
-        drew = 0
-        while len(p["river"]) < max_slots:
-            c = self._draw_one(state, side)
-            if c is None: break
-            p["river"].insert(0, c)  # refill from the left
-            drew += 1
-        if drew:
-            self._log(state, f"{side} drew {drew} card(s) to refill the river (left side).")
-
-    def _on_card_removed_from_river(self, state, side, card_id, to_discard=True):
-        p = self._ensure_player(state, side)
-        if card_id in p["river"]:
-            p["river"].remove(card_id)
-            if to_discard:
-                p["discard"].append(card_id)
-        self._slide_right(state, side)
-        self._top_off_left(state, side)
-
-    def _end_of_map_turn_river_step(self, state):
-        max_slots = int(self.river_rules.get("slots", 7))
-        for side in ("israel", "iran"):
-            p = self._ensure_player(state, side)
-            if len(p["river"]) >= max_slots and p["river"]:
-                rightmost = p["river"].pop()  # age out right edge
-                p["discard"].append(rightmost)
-                self._log(state, f"{side} aged out rightmost river card {rightmost}.")
-            self._slide_right(state, side)
-            self._top_off_left(state, side)
+    
 
     # ----------------------------- BOOTSTRAP -----------------------------------
     def bootstrap_rivers(self, state: dict, *, river_size: Optional[int] = None) -> dict:
@@ -407,10 +382,10 @@ class GameEngine:
                 p["deck"] = deck_ids
                 p["discard"] = []
                 p["river"] = []
-                while len(p["river"]) < river_cap:
-                    c = self._draw_one(state, side)
-                    if c is None: break
+                while len(p["river"]) < river_cap and p["deck"]:
+                    c = p["deck"].pop(0)  # deck was just shuffled; no need to reshuffle here
                     p["river"].insert(0, c)
+
                 self._log(state, f"Initialized and dealt a new river for {side}.")
         return state
 
@@ -459,8 +434,12 @@ class GameEngine:
     # ------------------------------ PASS & CARDS --------------------------------
     def _resolve_pass(self, state):
         side = state.get("turn", {}).get("current_player", "israel")
+        t = state.setdefault("turn", {})
+        t["consecutive_passes"] = t.get("consecutive_passes", 0) + 1
         self._log(state, f"{side} passes.")
         return self._advance_turn(state)
+
+
 
     def _black_market_convert(self, state, side, spend_pp=0, spend_ip=0, spend_mp=0, receive="pp"):
         total = spend_pp + spend_ip + spend_mp
@@ -476,7 +455,7 @@ class GameEngine:
         res[receive] = res.get(receive, 0) + sets
         return True
 
-    def _resolve_play_card(self, state, action):
+    def _resolve_play_card(self, state, action, do_advance=True):
         side = state['turn']['current_player']
     
         self._ensure_player(state, side)
@@ -529,7 +508,8 @@ class GameEngine:
 
         self._mark_last_act(state, side, list(self._card_flags(side, card_id)))
         self._log(state, f"{side} played card {card_id}: {cdef.get('Name','?')}")
-        return self._advance_turn(state)
+        state.setdefault("turn", {})["consecutive_passes"] = 0
+        return self._advance_turn(state) if do_advance else state
 
     # ------------------------ EFFECTS (unchanged style) ------------------------
     def _apply_structured_card_effects(self, state, side, effects):
@@ -994,10 +974,7 @@ class GameEngine:
                 state.get("opinion", {}).get("third_parties", {}) or {}
         op = third.get(str(country).lower(), 0)
         return int(op) >= int(min_op)
-    flags = state.setdefault('turn', {}).setdefault('per_impulse_card_played', {'israel': False, 'iran': False})
-    if flags.get(side):
-        # Remove Play Card actions if a card was already played this impulse
-        actions = [a for a in actions if a.get('type') != 'Play Card']
+
 
     def get_legal_actions(self, state, side=None):
         side = side or state.get("turn", {}).get("current_player", "israel")
@@ -1070,12 +1047,15 @@ class GameEngine:
                     "mp_cost": int(ttc.get("mp",1)),
                     "ip_cost": int(ttc.get("ip",1))
                 })
-        side = state['turn']['current_player']
-        per_impulse = state.get('turn', {}).get('per_impulse_card_played', {}).get(side, False)
+        # Enforce “max one card per impulse” (house rule toggle you’re using)
+        side_now = state.get('turn', {}).get('current_player', side)
+        per_impulse = state.get('turn', {}).setdefault('per_impulse_card_played', {'israel': False, 'iran': False}).get(side_now, False)
         if per_impulse:
-            legal = [a for a in legal if a.get('type') != 'Play Card']
+            actions = [a for a in actions if a.get('type') != 'Play Card']
+        actions.append({"type": "End Impulse"})
 
         return actions if actions else [{"type": "Pass"}]
+
 
 
     # ------------------------------ EVENT RESOLVERS -----------------------------
@@ -1184,10 +1164,13 @@ class GameEngine:
         comps_order = prim + sec if prim else sec
 
         for ac in package:
-            wlist = ac.get('weapons', []) or [{"weapon": "Mk-82", "qty": 2}]
+            wlist = ac.get('weapons', [])
             if not wlist and isinstance(event.get("loadout"), dict):
                 global_pgms = event["loadout"].get("PGMs", [])
-                wlist = [{"weapon": wname, "qty": 1} for wname in global_pgms]
+                if global_pgms:
+                    wlist = [{"weapon": wname, "qty": 1} for wname in global_pgms]
+            if not wlist:
+                wlist = [{"weapon": "Mk-82", "qty": 2}]
 
             for w in wlist:
                 wname = w.get('weapon', 'Mk-82')
@@ -1214,7 +1197,7 @@ class GameEngine:
         for sq_name in squadron_names:
             state.setdefault('squadrons', {}).setdefault(side, {})
             state['squadrons'][side][sq_name] = 'Returning'
-    def _resolve_order_airstrike(self, state, action):
+    def _resolve_order_airstrike(self, state, action, do_advance=True):
         res = state['players']['israel']['resources']
         ac = self.action_costs.get("airstrike", {"mp": 3, "ip": 3})
         need_mp, need_ip = int(ac.get("mp",3)), int(ac.get("ip",3))
@@ -1237,9 +1220,10 @@ class GameEngine:
         state.setdefault('active_events_queue', []).append(ev)
         self._mark_last_act(state, "israel", ["overt"])
         self._log(state, f"Airstrike ordered vs {ev['target']} by {ev['squadrons']}.")
-        return self._advance_turn(state)
+        state.setdefault("turn", {})["consecutive_passes"] = 0
+        return self._advance_turn(state) if do_advance else state
 
-    def _resolve_order_special_warfare(self, state, action):
+    def _resolve_order_special_warfare(self, state, action, do_advance=True):
         res = state['players']['israel']['resources']
         swc = self.action_costs.get("special_warfare", {"mp": 1, "ip": 1})
         mp = int(action.get("mp_cost", swc.get("mp",1)))
@@ -1258,9 +1242,10 @@ class GameEngine:
         state.setdefault('active_events_queue', []).append(ev)
         self._mark_last_act(state, "israel", ["covert"])
         self._log(state, f"Special Warfare queued vs {ev['target']} (pts {mp+ip}).")
-        return self._advance_turn(state)
+        state.setdefault("turn", {})["consecutive_passes"] = 0
+        return self._advance_turn(state) if do_advance else state
 
-    def _resolve_order_ballistic_missile(self, state, action):
+    def _resolve_order_ballistic_missile(self, state, action, do_advance=True):
         res = state['players']['iran']['resources']
         bmc = self.action_costs.get("ballistic_missile", {"mp": 1})
         mp_cost = int(bmc.get("mp",1)) * max(1, int(action.get("battalions",1)))
@@ -1279,9 +1264,10 @@ class GameEngine:
         state.setdefault('active_events_queue', []).append(ev)
         self._mark_last_act(state, "iran", ["overt"])
         self._log(state, f"BM launch queued ({ev['missile_type']} x{ev['battalions']}) vs {ev['target']}.")
-        return self._advance_turn(state)
+        state.setdefault("turn", {})["consecutive_passes"] = 0
+        return self._advance_turn(state) if do_advance else state
 
-    def _resolve_order_terror_attack(self, state, action):
+    def _resolve_order_terror_attack(self, state, action, do_advance=True):
         res = state['players']['iran']['resources']
         ttc = self.action_costs.get("terror_attack", {"mp": 1, "ip": 1})
         mp = int(action.get("mp_cost", ttc.get("mp",1)))
@@ -1299,7 +1285,8 @@ class GameEngine:
         state.setdefault('active_events_queue', []).append(ev)
         self._mark_last_act(state, "iran", ["covert","dirty"])
         self._log(state, f"Terror Attack queued (intensity {mp+ip}).")
-        return self._advance_turn(state)
+        state.setdefault("turn", {})["consecutive_passes"] = 0
+        return self._advance_turn(state) if do_advance else state
 
     def _resolve_ballistic_missile_impact(self, state, event):
         target = event.get('target')
@@ -1330,12 +1317,12 @@ class GameEngine:
             if 'p_backlash' in prof:
                 if self._rng(state).random() <= float(prof['p_backlash']):
                     state.setdefault('opinion', {}).setdefault('third_parties', {})
-                    state['opinion']['third_parties']['UN'] = state['opinion']['third_parties'].get('UN', 0) - 1
+                    state['opinion']['third_parties']['un'] = state['opinion']['third_parties'].get('un', 0) - 1
                     self._log(state, "BM mishap/backlash: UN -1.")
             else:
                 if self._roll(state, 6) == 1:
                     state.setdefault('opinion', {}).setdefault('third_parties', {})
-                    state['opinion']['third_parties']['UN'] = state['opinion']['third_parties'].get('UN', 0) - 1
+                    state['opinion']['third_parties']['un'] = state['opinion']['third_parties'].get('un', 0) - 1
                     self._log(state, "BM mishap/backlash: UN -1.")
 
     def _resolve_sw_execution(self, state, event):
@@ -1364,7 +1351,7 @@ class GameEngine:
         state['opinion']['domestic']['israel'] = state['opinion']['domestic'].get('israel', 0) - 1
         if inten >= 4:
             state.setdefault('opinion', {}).setdefault('third_parties', {})
-            state['opinion']['third_parties']['US'] = state['opinion']['third_parties'].get('US', 0) - 1
+            state['opinion']['third_parties']['usa'] = state['opinion']['third_parties'].get('usa', 0) - 1
         self._log(state, f"Terror attack resolved (intensity {inten}).")
 
     def _resolve_rebase_complete(self, state, event):
@@ -1395,7 +1382,7 @@ class GameEngine:
             def draw_one():
                 if not deck:
                     if discard:
-                        self._rng.shuffle(discard)
+                        self._rng(state).shuffle(discard)
                         deck[:], discard[:] = discard[:], []
                     else:
                         return None
@@ -1429,20 +1416,30 @@ class GameEngine:
                 return state
     
             if phase == 'night':
-                # End-of-map-turn River aging
-                self._end_of_map_turn_river_step(state)  # 2.5 River
-                # Morning pipeline in rule order
-                self._morning_discard_leftover_points(state)
-                self._morning_repair_rolls(state)
-                self._morning_allocate_points_from_opinion(state)
-                self._morning_strategic_events(state)
+               # 2.5 River aging at end of Map Turn
+                self._end_of_map_turn_river_step(state)
+                
+                # Advance the turn number now that a full day passed
+                turn['turn_number'] = int(turn.get('turn_number', 1)) + 1
+                
+                # Morning pipeline (binder order)
+                self._morning_reset_resources(state)                  # discard leftover points
+                self._morning_repair_rolls(state)                     # repair rolls
+                carry_cap = self.rules.get("morning_carry_cap")       # or None
+                apply_morning_opinion_income(state, carry_cap=carry_cap, log_fn=self._log)
+                self._roll_strategic_event_morning(state)             # morning strategic events
+                for s in ('israel','iran'):                           # player assist rolls
+                    self._roll_player_assist_event(state, s)
+                
                 # Safety: top up rivers
                 self._refill_to_seven_if_needed(state)
-                # New turn starts with Israel, Morning
+                
+                # New Map Turn starts: Israel to act in Morning
                 turn['phase'] = 'morning'
                 turn['current_player'] = 'israel'
                 self._reset_impulse_flags(state)
                 return state
+
     
         # otherwise just alternate impulse
         turn['current_player'] = other
@@ -1491,18 +1488,7 @@ class GameEngine:
         return state
 
       
-    def _snapshot_minimal(state, side):
-        """Small, stable snapshot so diffs are readable."""
-        P = state["players"][side]
-        return {
-            "PP": P["resources"]["PP"],
-            "IP": P["resources"]["IP"],
-            "MP": P["resources"]["MP"],
-            "tracks": P.get("tracks", {}).copy(),       # e.g., domestic_opinion, escalation, etc.
-            "flags":  {k:v for k,v in P.get("flags", {}).items() if v},  # only true flags
-            "queues": {k: len(v) for k,v in P.get("queues", {}).items()},# counts only, keeps log concise
-        }
-
+    
     def _log_diff(self, before, after):
         def flat(d, prefix=""):
             out = {}
@@ -1519,25 +1505,6 @@ class GameEngine:
             if b.get(key) != a.get(key):
                 diffs.append(f"{key}: {b.get(key)} → {a.get(key)}")
         return "; ".join(diffs) if diffs else "no change"
-
-    def _apply_card_effects(self, state, side, card):
-        # snapshot before
-        before_me  = _snapshot_minimal(state, side)
-        before_opp = _snapshot_minimal(state, self._opponent(side))
-
-        # do the actual effect (your existing logic)
-        outcome_text = self._do_card_logic(state, side, card)
-
-        # snapshot after
-        after_me  = _snapshot_minimal(state, side)
-        after_opp = _snapshot_minimal(state, self._opponent(side))
-
-        # log it
-        me_diffs  = self._log_diff(before_me, after_me)
-        op_diffs  = self._log_diff(before_opp, after_opp)
-        self._log(state,
-            f"Card {card['id']} [{card.get('code') or card.get('name','?')}] played by {side} → {outcome_text} | "
-            f"{side} Δ: {me_diffs} | Opp Δ: {op_diffs}")
 
     # ----------------------------- PUBLIC UTILITIES ----------------------------
     def apply_action(self, state, action):
@@ -1568,10 +1535,17 @@ class GameEngine:
         t = action.get("type")
     
         # ---------- End Impulse: hand turn over to opponent ----------
-        if t == "End Impulse" or t == "Pass":
-            # Respect your existing Pass behavior (advance turn and run upkeep/river steps)
+        if t == "End Impulse":
+            turn = state.setdefault("turn", {})
+            turn["consecutive_passes"] = turn.get("consecutive_passes", 0) + 1
             return self._advance_turn(state)
-    
+
+        
+        if t == "Pass":
+            turn = state.setdefault("turn", {})
+            turn["consecutive_passes"] = turn.get("consecutive_passes", 0) + 1
+            return self._advance_turn(state)
+
         # ---------- Play Card (one per impulse) ----------
         if t == "Play Card":
             # Enforce the one-card-per-impulse ceiling
@@ -1585,6 +1559,7 @@ class GameEngine:
             # Create a copy of the action and run resolver with do_advance=False.
             # (See small edits to _resolve_play_card below.)
             state = self._resolve_play_card_keep_impulse(state, action)
+            state.setdefault("turn", {})["consecutive_passes"] = 0
             per_imp[side_now] = True
             return state  # do NOT advance
     
@@ -1732,6 +1707,7 @@ class GameEngine:
         self._normalize_cards_namespaces(state)
         # IMPORTANT: do NOT advance the turn; keep the impulse alive for multi-actions
         return state
+    
 
     # ----------------------------- VICTORY CONDITIONS ---------------------------
     def _domestic(self, state, side):
