@@ -124,9 +124,19 @@ def play_full_game(
         if cur not in ("israel", "iran"):
             break
 
+        # run_dynamic.py (AFTER)
+
         agent = agent_israel if cur == "israel" else agent_iran
-        action = agent.choose_action(state)
-        plies.append({"ply": ply + 1, "side": cur, "action": action})
+        # Unpack the action and the policy from the agent's return value
+        action, mcts_policy = agent.choose_action(state)
+        
+        # Add the mcts_policy to the data being saved for this ply
+        plies.append({
+            "ply": ply + 1, 
+            "side": cur, 
+            "action": action, 
+            "mcts_policy": mcts_policy
+        })
 
         state = engine.apply_action(state, action)
         t = state.get("turn", {})
