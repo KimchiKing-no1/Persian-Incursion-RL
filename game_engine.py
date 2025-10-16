@@ -162,6 +162,31 @@ class GameEngine:
         self.rules["targets"] = {name: self.rules.get("TARGET_DEFENSES", {}).get(name, {}) for name in tgt_names}
 
         self._cards_index = {"iran": list(iran_map.keys()), "israel": list(israel_map.keys())}
+    # ---- CARDS STATE: canonical location ----
+    # We will ONLY use: state['players'][side]['deck'|'river'|'discard']
+    # where `side` in {'israel','iran'}.
+    
+    def _ensure_player_cards_branch(self, state, side):
+        players = state.setdefault('players', {})
+        p = players.setdefault(side, {})
+        p.setdefault('deck', [])
+        p.setdefault('river', [None]*7)   # 7 slots (None = hole)
+        p.setdefault('discard', [])
+        return p
+    
+    def _normalize_cards_namespaces(self, state):
+        """If older state keys exist (e.g. state['israel']['deck']), migrate them once."""
+        for side in ('israel','iran'):
+            p = self._ensure_player_cards_branch(state, side)
+            legacy = state.get(side, {})
+            if isinstance(legacy, dict):
+                for key in ('deck','river','discard'):
+                    if legacy.get(key) and not p.get(key):
+                        p[key] = legacy[key]
+                for key in ('deck','river','discard'):
+                    if key in legacy:
+                        del legacy[key]
+
 
     def _rng(self, state):
         r = state.setdefault('_rng', random.Random())
@@ -175,6 +200,53 @@ class GameEngine:
 
     def _log(self, state, msg):
         state.setdefault("log", []).append(str(msg))
+    # ---- RIVER HELPERS ----
+
+    def _remove_card_from_river(self, state, side, index):
+        """Play/remove a card at `index` (0..6). Move to discard. Leave a None hole."""
+        p = self._ensure_player_cards_branch(state, side)
+        if not (0 <= index < 7):
+            return False
+        card = p['river'][index]
+        if card is None:
+            return False
+        p['discard'].append(card)
+        p['river'][index] = None
+        return True
+    
+    def _end_of_map_turn_river_step(self, state):
+        """2.5 River: discard rightmost, compress right, refill from left to 7, reshuffle if needed."""
+        for side in ('israel','iran'):
+            p = self._ensure_player_cards_branch(state, side)
+            river = p['river']
+            deck = p['deck']
+            discard = p['discard']
+    
+            # 1) Discard card in 7th position (index 6) if present
+            if river[6] is not None:
+                discard.append(river[6])
+                river[6] = None
+    
+            # 2) Compress RIGHT: non-None to the right, Nones on the left
+            nones = [x for x in river if x is None]
+            cards = [x for x in river if x is not None]
+            river[:] = [None]*len(nones) + cards
+    
+            # 3) Refill from LEFT to size 7 (reshuffle discard -> deck as needed)
+            def draw_one():
+                if not deck:
+                    if discard:
+                        self._rng.shuffle(discard)
+                        deck[:], discard[:] = discard[:], []
+                    else:
+                        return None
+                return deck.pop(0) if deck else None
+    
+            for i in range(7):
+                if river[i] is None:
+                    nxt = draw_one()
+                    if nxt is not None:
+                        river[i] = nxt
 
     # --------------------------- STATE HELPERS ---------------------------------
     def _ensure_player(self, state, side):
@@ -487,6 +559,7 @@ class GameEngine:
 
     def _resolve_play_card(self, state, action):
         side = state['turn']['current_player']
+        idx  = action.get('river_index'
         self._ensure_player(state, side)
         card_id = action.get('card_id')
         if card_id is None: return state
@@ -1074,6 +1147,10 @@ class GameEngine:
                     "mp_cost": int(ttc.get("mp",1)),
                     "ip_cost": int(ttc.get("ip",1))
                 })
+        side = state['turn']['current_player']
+        per_impulse = state.get('turn', {}).get('per_impulse_card_played', {}).get(side, False)
+        if per_impulse:
+            legal = [a for a in legal if a.get('type') != 'Play Card']
 
         return actions if actions else [{"type": "Pass"}]
 
@@ -1379,49 +1456,84 @@ class GameEngine:
         self._log(state, f"Air defense unit {unit_id} rebased to {dest} and is Ready.")
 
     # -------------------------- TURN ADVANCEMENT & UPKEEP ----------------------
+    def _reset_impulse_flags(self, state):
+        turn = state.setdefault('turn', {})
+        turn['per_impulse_card_played'] = {'israel': False, 'iran': False}
+    
+    def _refill_to_seven_if_needed(self, state):
+        # Ensure both rivers have exactly 7 slots and fill any Nones from deck (reshuffle discard if needed)
+        for side in ('israel','iran'):
+            p = self._ensure_player_cards_branch(state, side)
+            river = p['river']
+            if len(river) != 7:
+                river[:] = (river + [None]*7)[:7]
+            deck = p['deck']
+            discard = p['discard']
+            def draw_one():
+                if not deck:
+                    if discard:
+                        self._rng.shuffle(discard)
+                        deck[:], discard[:] = discard[:], []
+                    else:
+                        return None
+                return deck.pop(0) if deck else None
+            for i in range(7):
+                if river[i] is None:
+                    c = draw_one()
+                    if c is not None:
+                        river[i] = c
+
     def _advance_turn(self, state):
-        # process due events
-        current_turn = state.get('turn', {}).get('turn_number', 1)
-        queue = state.get('active_events_queue', [])
-        due = [e for e in queue if e.get('scheduled_for') == current_turn]
-        future = [e for e in queue if e.get('scheduled_for', 10**9) > current_turn]
-        state['active_events_queue'] = future
-        for ev in due:
-            et = ev.get('type')
-            if et == 'airstrike_resolution':
-                self._resolve_airstrike_combat(state, ev)
-            elif et == 'ballistic_missile_impact':
-                self._resolve_ballistic_missile_impact(state, ev)
-            elif et == 'sw_execution':
-                self._resolve_sw_execution(state, ev)
-            elif et == 'terror_attack_resolution':
-                self._resolve_terror_attack(state, ev)
-            elif et == 'rebase_complete':
-                self._resolve_rebase_complete(state, ev)
-            else:
-                self._log(state, f"Unknown event '{et}' ignored.")
-
-        cur = state['turn']['current_player']
-        if cur == 'israel':
-            state['turn']['current_player'] = 'iran'
-        else:
-            self._red_breakdown_after_map_turn(state)
-            self._end_of_map_turn_river_step(state)
-
-            state['turn']['current_player'] = 'israel'
-            cycle = ['morning', 'afternoon', 'night']
-            phase = state['turn']['phase']
-            idx = (cycle.index(phase)+1) % 3 if phase in cycle else 0
-            state['turn']['phase'] = cycle[idx]
-            if state['turn']['phase'] == 'morning':
-                state['turn']['turn_number'] += 1
-                state = self._handle_morning_upkeep(state)
-
-        if state.get('strait_closed'):
-            state['strait_closed_days'] = max(0, state.get('strait_closed_days', 0) - 1)
-            if state['strait_closed_days'] == 0:
-                state['strait_closed'] = False
-                self._log(state, "Strait of Hormuz re-opened (duration elapsed).")
+        """
+        Called after each action (or pass).
+        Handles: switching player impulses, end-of-map-turn (after Night when both finished),
+        and calls Morning pipeline in correct order.
+        """
+        turn = state.setdefault('turn', {})
+        phase = turn.get('phase', 'morning')
+        cur  = turn.get('current_player', 'israel')
+        other = 'iran' if cur == 'israel' else 'israel'
+    
+        # If both just passed, close this phase
+        if turn.get('consecutive_passes', 0) >= 2:
+            # Phase ends; reset pass counter
+            turn['consecutive_passes'] = 0
+    
+            if phase == 'morning':
+                turn['phase'] = 'afternoon'
+                turn['current_player'] = 'israel'
+                self._reset_impulse_flags(state)
+                return state
+    
+            if phase == 'afternoon':
+                turn['phase'] = 'night'
+                turn['current_player'] = 'israel'
+                self._reset_impulse_flags(state)
+                return state
+    
+            if phase == 'night':
+                # END OF MAP TURN:
+                # 1) River aging (2.5)
+                self._end_of_map_turn_river_step(state)
+    
+                # 2) Morning pipeline in rule order
+                self._morning_discard_leftover_points(state)
+                self._morning_repair_rolls(state)
+                self._morning_allocate_points_from_opinion(state)
+                self._morning_strategic_events(state)
+    
+                # 3) Safety: ensure rivers back to 7 if anything missed
+                self._refill_to_seven_if_needed(state)
+    
+                # Start new phase, Israel first
+                turn['phase'] = 'morning'
+                turn['current_player'] = 'israel'
+                self._reset_impulse_flags(state)
+                return state
+    
+        # Otherwise, just hand the impulse to the other player
+        turn['current_player'] = other
+        self._reset_impulse_flags(state)
         return state
 
     def _handle_morning_upkeep(self, state):
@@ -1704,7 +1816,7 @@ class GameEngine:
     
         self._mark_last_act(state, side, list(self._card_flags(side, card_id)))
         self._log(state, f"{side} played card {card_id}: {cdef.get('Name','?')}")
-    
+        self._normalize_cards_namespaces(state)
         # IMPORTANT: do NOT advance the turn; keep the impulse alive for multi-actions
         return state
 
