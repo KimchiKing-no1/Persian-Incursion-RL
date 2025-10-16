@@ -184,6 +184,124 @@ class GameEngine:
         ps.setdefault('deck', [])
         ps.setdefault('discard', [])
         return ps
+    # === RIVER / TURN-LIMIT HELPERS ============================================
+
+    def _ensure_river_structs(self, state):
+        """
+        Ensure each side has deck/discard/river structures.
+        River is a list of length <= 7 storing card dicts: {"id": int, ...}
+        """
+        for side in ("israel", "iran"):
+            side_state = state.setdefault(side, {})
+            side_state.setdefault("deck", [])     # list of card_ids (top = end)
+            side_state.setdefault("discard", [])  # list of card_ids
+            side_state.setdefault("river", [])    # list of card dicts, left->right
+        # per-impulse play tracking
+        turn = state.setdefault("turn", {})
+        flags = turn.setdefault("per_impulse_card_played", {"israel": False, "iran": False})
+        if "israel" not in flags: flags["israel"] = False
+        if "iran" not in flags: flags["iran"] = False
+    
+    
+    def _draw_from_deck(self, state, side, n):
+        """Draw n cards from side's deck; shuffle discard into deck if needed."""
+        deck = state[side]["deck"]
+        discard = state[side]["discard"]
+        drawn = []
+    
+        for _ in range(n):
+            if not deck:
+                # recycle discard if any
+                if discard:
+                    # If you have a deterministic RNG on state, use it here instead of random
+                    self._shuffle_in_place(discard, state)  # implement deterministic shuffle
+                    deck.extend(discard)
+                    discard.clear()
+                else:
+                    break  # no cards left anywhere
+            if deck:
+                cid = deck.pop()  # take top (end)
+                drawn.append({"id": int(cid)})
+        return drawn
+    
+    
+    def _shuffle_in_place(self, lst, state):
+        """
+        Deterministic shuffle helper. Replace with your RNG using state['rng'] if you have one.
+        For now, simple Fisher-Yates using Python's random seeded by state.get('seed').
+        """
+        import random
+        rnd = random.Random(state.get("seed", 0))
+        for i in range(len(lst) - 1, 0, -1):
+            j = rnd.randint(0, i)
+            lst[i], lst[j] = lst[j], lst[i]
+    
+    
+    def _deal_river_to_seven(self, state, side):
+        """
+        Fill blanks on the LEFT until river length is 7. 
+        (New cards appear on the left per rules.)
+        """
+        river = state[side]["river"]
+        # Only add if fewer than 7 total cards present
+        if len(river) < 7:
+            need = 7 - len(river)
+            new_cards = self._draw_from_deck(state, side, need)
+            # New cards go to the left (index 0), preserving their order as drawn (leftmost is first drawn)
+            # We drew with last-pop from deck, so the first in new_cards is the earliest drawn; put it leftmost.
+            for c in reversed(new_cards):
+                river.insert(0, c)
+    
+    
+    def _river_end_of_map_turn(self, state, side):
+        """
+        End-of-Map-Turn River maintenance for a side (2.5 The River):
+          • Discard 7th (far right) if present.
+          • Shift remaining cards to right to fill empty spaces from plays.
+          • Draw new cards at left until River has 7.
+        We represent played/removals as None "holes" inside river during the turn.
+        """
+        river = state[side]["river"]
+    
+        # Step 1: discard the 7th (far-right) card if present
+        if len(river) > 0:
+            # Pad to 7 with None for easier indexing
+            while len(river) < 7:
+                river.append(None)
+            rightmost = river[6]
+            if rightmost is not None:
+                state[side]["discard"].append(rightmost["id"])
+                river[6] = None
+    
+        # Step 2: compress to the RIGHT (all spaces to left, all cards to right)
+        # We want a list of length <= 7 with all cards contiguous at the right.
+        cards = [c for c in river if c is not None]
+        holes = 7 - len(cards)
+        river[:] = [None] * holes + cards
+    
+        # Step 3: draw new cards to the LEFT until we have 7
+        self._deal_river_to_seven(state, side)
+    
+    
+    def _start_of_map_turn_fill_river(self, state):
+        """At start of each Map Turn, ensure each side's river is back up to 7."""
+        for side in ("israel", "iran"):
+            self._deal_river_to_seven(state, side)
+    
+    
+    def _on_impulse_start(self, state):
+        """Reset the per-impulse card play flags for the current player/impulse if you want each side limited per impulse."""
+        turn = state["turn"]
+        # Reset for both or just reset current side? Rule intent: each side can play at most one card on its impulse.
+        # We'll reset the flag for the side whose impulse is active.
+        side = turn.get("current_player")
+        turn["per_impulse_card_played"][side] = False
+    
+    
+    def _on_map_turn_end(self, state):
+        """Call at transition from Night → Morning (before the next Map Turn starts)."""
+        for side in ("israel", "iran"):
+            self._river_end_of_map_turn(state, side)
 
     # --- helpers used by ops / damage ------------------------------------------
     def _get_aircraft_count_for_squadron(self, state, side, squadron_name):
