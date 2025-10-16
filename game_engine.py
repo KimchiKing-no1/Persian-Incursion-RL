@@ -1517,52 +1517,196 @@ class GameEngine:
     # ----------------------------- PUBLIC UTILITIES ----------------------------
     def apply_action(self, state, action):
         """
-        Single entry point used by agents/runners.
-        Validates the action against legal moves and dispatches to the proper resolver.
+        Multi-action impulses:
+        - You may issue multiple ops (Airstrike / Special Warfare / BM / Terror) in one impulse.
+        - You may play AT MOST one card per impulse.
+        - The impulse ends ONLY when the side does 'End Impulse' (or if no legal actions remain).
+        - River/card rules: played card is removed → discard, river slides/right-align, refill from LEFT.
         """
-        # Determine side-to-move from state
+        # Validate against legal generator for current side
         side_now = state.get("turn", {}).get("current_player", "israel")
-
-        # Validate action is legal
-        legal = self.get_legal_actions(state, side_now)
+        legal = self.get_legal_actions(state, side=side_now)
+    
         def _same(a, b):
             if a.get("type") != b.get("type"):
                 return False
-            # shallow field compare: only keys provided in 'b' must match
-            for k, v in b.items():
-                if a.get(k) != v:
+            # allow subset match (legal may omit optional fields)
+            for k, v in a.items():
+                if k not in b or b[k] != v:
                     return False
             return True
-
-        if not any(_same(a, action) for a in legal):
-            self._log(state, f"Refused illegal action: {action}")
+    
+        if not any(_same(action, a) for a in legal):
+            self._log(state, f"[WARN] Illegal/blocked action refused: {action}")
             return state
-
-        # Work on a copy (safer for MCTS rollouts)
-        new_state = copy.deepcopy(state)
+    
         t = action.get("type")
-
-        if t == "Pass":
-            return self._resolve_pass(new_state)
-
+    
+        # ---------- End Impulse: hand turn over to opponent ----------
+        if t == "End Impulse" or t == "Pass":
+            # Respect your existing Pass behavior (advance turn and run upkeep/river steps)
+            return self._advance_turn(state)
+    
+        # ---------- Play Card (one per impulse) ----------
         if t == "Play Card":
-            return self._resolve_play_card(new_state, action)
+            # Enforce the one-card-per-impulse ceiling
+            per_imp = state.setdefault("turn", {}).setdefault("per_impulse_card_played",
+                                                              {"israel": False, "iran": False})
+            if per_imp.get(side_now, False):
+                self._log(state, f"{side_now} already played a card this impulse; card play blocked.")
+                return state
+    
+            # Use your existing resolver; BUT we want to keep the impulse alive.
+            # Create a copy of the action and run resolver with do_advance=False.
+            # (See small edits to _resolve_play_card below.)
+            state = self._resolve_play_card_keep_impulse(state, action)
+            per_imp[side_now] = True
+            return state  # do NOT advance
+    
+        # ---------- Operational orders (multi allowed per impulse) ----------
+# For these we call resolvers with do_advance=False so the impulse continues.
+        if t in (
+            "Order Airstrike",
+            "Order Special Warfare",
+            "Order Ballistic Missile",
+            "Order Terror Attack",
+        ):
+            # Side gate
+            if t in ("Order Airstrike", "Order Special Warfare") and side_now != "israel":
+                self._log(state, f"Refused: {t} is Israel-only, current side is {side_now}")
+                return state
+            if t in ("Order Ballistic Missile", "Order Terror Attack") and side_now != "iran":
+                self._log(state, f"Refused: {t} is Iran-only, current side is {side_now}")
+                return state
+        
+            # Route to the appropriate resolver with do_advance=False (stay in same impulse)
+            if t == "Order Airstrike":
+                return self._resolve_order_airstrike(state, action, do_advance=False)
+        
+            if t == "Order Special Warfare":
+                return self._resolve_order_special_warfare(state, action, do_advance=False)
+        
+            if t == "Order Ballistic Missile":
+                return self._resolve_order_ballistic_missile(state, action, do_advance=False)
+        
+            if t == "Order Terror Attack":
+                return self._resolve_order_terror_attack(state, action, do_advance=False)
+        
+        # ---------- Batch of operational orders in a single impulse ----------
+        # Example action:
+        # {"type":"MultiAction","actions":[{...op1...},{...op2...}, ...]}
+        if t == "MultiAction":
+            actions = action.get("actions", [])
+            if not isinstance(actions, list) or not actions:
+                self._log(state, "Refused MultiAction: missing or empty 'actions' list.")
+                return state
+        
+            # Enforce that all sub-actions are operational and belong to current side
+            op_names_isr = {"Order Airstrike", "Order Special Warfare"}
+            op_names_irn = {"Order Ballistic Missile", "Order Terror Attack"}
+            allowed_set = op_names_isr if side_now == "israel" else op_names_irn
+        
+            new_state = state
+            for idx, sub in enumerate(actions):
+                stype = sub.get("type")
+                if stype not in allowed_set:
+                    self._log(new_state, f"MultiAction[{idx}] refused: '{stype}' not allowed for {side_now}")
+                    break
+        
+                # Check legality against *current* new_state (resources may drop as we go)
+                legal_now = self.get_legal_actions(new_state)
+                if not any(
+                    la.get("type") == stype and all(la.get(k) == sub.get(k) for k in sub.keys())
+                    for la in legal_now
+                ):
+                    self._log(new_state, f"MultiAction[{idx}] refused illegal/unauthorized sub-action: {sub}")
+                    break
+        
+                # Dispatch with do_advance=False so we remain in the same impulse
+                if stype == "Order Airstrike":
+                    new_state = self._resolve_order_airstrike(new_state, sub, do_advance=False)
+                elif stype == "Order Special Warfare":
+                    new_state = self._resolve_order_special_warfare(new_state, sub, do_advance=False)
+                elif stype == "Order Ballistic Missile":
+                    new_state = self._resolve_order_ballistic_missile(new_state, sub, do_advance=False)
+                elif stype == "Order Terror Attack":
+                    new_state = self._resolve_order_terror_attack(new_state, sub, do_advance=False)
+                else:
+                    # Shouldn't happen, but be safe
+                    self._log(new_state, f"MultiAction[{idx}] unknown type '{stype}', aborting batch.")
+                    break
+        
+            # IMPORTANT: we *do not* advance here. Caller (or next action) should Pass or continue.
+            return new_state
+        
+        # Fallback (shouldn’t happen often)
+        self._log(state, f"Unknown or unhandled action '{t}'.")
+        return state
 
-        # Ops dispatchers (match side)
-        if t == "Order Airstrike" and side_now == "israel":
-            return self._resolve_order_airstrike(new_state, action)
 
-        if t == "Order Special Warfare" and side_now == "israel":
-            return self._resolve_order_special_warfare(new_state, action)
-
-        if t == "Order Ballistic Missile" and side_now == "iran":
-            return self._resolve_order_ballistic_missile(new_state, action)
-
-        if t == "Order Terror Attack" and side_now == "iran":
-            return self._resolve_order_terror_attack(new_state, action)
-
-        self._log(new_state, f"Unknown action '{t}'.")
-        return new_state
+    def _resolve_play_card_keep_impulse(self, state, action):
+        """
+        Same as _resolve_play_card but does NOT advance the turn; keeps the impulse alive.
+        We reuse your existing logic by copying and trimming the final advance.
+        """
+        side = state['turn']['current_player']
+        self._ensure_player(state, side)
+        card_id = action.get('card_id')
+        if card_id is None:
+            return state
+    
+        cdef = self.rules.get('cards', {}).get(side, {}).get(card_id)
+        if not cdef:
+            self._log(state, f"{side} attempted to play unknown card {card_id}.")
+            return state
+    
+        river = state['players'][side]['river']
+        if card_id not in river:
+            self._log(state, f"{side} tried to play card {card_id} not in river; no-op.")
+            return state
+    
+        cm = self._card_cost_map(side, card_id)
+        req_text = self._card_requires_text(side, card_id)
+        if req_text and not self._requires_satisfied(state, side, req_text):
+            self._log(state, f"{side} cannot play card {card_id}: requires not met.")
+            return state
+    
+        res = state['players'][side]['resources']
+    
+        # Handle cost & optional black-market conversion (unchanged from your version)
+        if (cdef.get("Cost") or "").strip() == "--":
+            if (res.get("pp",0)+res.get("ip",0)+res.get("mp",0)) < 3:
+                self._log(state, f"{side} cannot play {card_id}: needs ≥3 total points for conversion.")
+                return state
+            spend_pp = min(3, res.get("pp", 0))
+            spend_ip = min(max(0, 3 - spend_pp), res.get("ip", 0))
+            spend_mp = min(max(0, 3 - spend_pp - spend_ip), res.get("mp", 0))
+            if not self._black_market_convert(state, side, spend_pp, spend_ip, spend_mp, receive="pp"):
+                self._log(state, f"{side} failed Black Market conversion path.")
+                return state
+        else:
+            for k in ("pp","ip","mp"):
+                if res.get(k,0) < cm.get(k,0):
+                    self._log(state, f"{side} cannot afford card {card_id}.")
+                    return state
+            for k in ("pp","ip","mp"):
+                res[k] -= cm.get(k,0)
+    
+        # Remove from river → discard, then slide/right-align & refill from LEFT
+        self._on_card_removed_from_river(state, side, card_id, to_discard=True)
+    
+        # Apply effects (your existing structured/textual paths)
+        effects_struct = self._card_struct(side, card_id).get('effects')
+        if effects_struct:
+            self._apply_structured_card_effects(state, side, effects_struct)
+        else:
+            self._apply_textual_card_effect(state, side, (cdef.get('Effect') or '').strip())
+    
+        self._mark_last_act(state, side, list(self._card_flags(side, card_id)))
+        self._log(state, f"{side} played card {card_id}: {cdef.get('Name','?')}")
+    
+        # IMPORTANT: do NOT advance the turn; keep the impulse alive for multi-actions
+        return state
 
     # ----------------------------- VICTORY CONDITIONS ---------------------------
     def _domestic(self, state, side):
