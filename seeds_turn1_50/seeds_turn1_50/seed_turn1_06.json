@@ -1,0 +1,279 @@
+{
+  "turn": {
+    "turn_number": 1,
+    "current_player": "israel",
+    "phase": "morning",
+    "passes_in_row": 0
+  },
+  "players": {
+    "israel": {
+      "resources": {
+        "pp": 7,
+        "ip": 8,
+        "mp": 11
+      },
+      "river": [
+        5,
+        12,
+        17,
+        18,
+        20,
+        25,
+        33
+      ],
+      "deck": [],
+      "discard": []
+    },
+    "iran": {
+      "resources": {
+        "pp": 5,
+        "ip": 4,
+        "mp": 6
+      },
+      "river": [
+        2,
+        6,
+        9,
+        15,
+        21,
+        28,
+        34
+      ],
+      "deck": [],
+      "discard": []
+    }
+  },
+  "opinion": {
+    "domestic": {
+      "israel": 5,
+      "iran": -5
+    },
+    "third_party": {
+      "US": 5,
+      "Russia": -3,
+      "China": -6,
+      "SA": 3,
+      "Turkey": 4,
+      "UN": 0,
+      "Jordan": 1
+    },
+    "third_parties": {}
+  },
+  "rules": {
+    "carryover_cap": 20,
+    "income_rules": [],
+    "river_age_at_morning": true,
+    "river_keep_size": 7
+  },
+  "air": {
+    "israel_squadrons": [
+      {
+        "id": "69",
+        "type": "F-15I Ra'am",
+        "status": "Ready",
+        "current": 4,
+        "damaged": 0,
+        "under_repair": 0,
+        "lost": 0,
+        "base": "Hatzerim",
+        "RepairLevel": "first",
+        "mission_status": "Ready"
+      },
+      {
+        "id": "107",
+        "type": "F-16I Sufa",
+        "status": "Ready",
+        "current": 5,
+        "damaged": 0,
+        "under_repair": 0,
+        "lost": 0,
+        "base": "Ramon",
+        "RepairLevel": "first",
+        "mission_status": "Ready"
+      },
+      {
+        "id": "109",
+        "type": "F-16I Sufa",
+        "status": "Ready",
+        "current": 5,
+        "damaged": 0,
+        "under_repair": 0,
+        "lost": 0,
+        "base": "Ramat David Airbase",
+        "RepairLevel": "first",
+        "mission_status": "Ready"
+      },
+      {
+        "id": "119",
+        "type": "F-16I Sufa",
+        "status": "Ready",
+        "current": 5,
+        "damaged": 0,
+        "under_repair": 0,
+        "lost": 0,
+        "base": "Nevatim Airbase",
+        "RepairLevel": "first",
+        "mission_status": "Ready"
+      },
+      {
+        "id": "201",
+        "type": "F-16I Sufa",
+        "status": "Ready",
+        "current": 4,
+        "damaged": 0,
+        "under_repair": 0,
+        "lost": 0,
+        "base": "Ovda Airbase",
+        "RepairLevel": "first",
+        "mission_status": "Ready"
+      },
+      {
+        "id": "253",
+        "type": "F-16I Sufa",
+        "status": "Ready",
+        "current": 4,
+        "damaged": 0,
+        "under_repair": 0,
+        "lost": 0,
+        "base": "Sde Dov Airbase",
+        "RepairLevel": "first",
+        "mission_status": "Ready"
+      }
+    ],
+    "iran_squadrons": [
+      {
+        "id": "11T",
+        "type": "MiG-29",
+        "status": "Ready",
+        "current": 14,
+        "damaged": 0,
+        "under_repair": 0,
+        "lost": 0,
+        "base": "TAB 1 Mehrabad",
+        "RepairLevel": "second",
+        "mission_status": "Ready"
+      },
+      {
+        "id": "D1",
+        "type": "F-14",
+        "status": "Ready",
+        "current": 4,
+        "damaged": 0,
+        "under_repair": 0,
+        "lost": 0,
+        "base": "TAB 1 Mehrabad",
+        "RepairLevel": "fourth",
+        "mission_status": "Ready"
+      }
+    ],
+    "israel_lost_total": 0,
+    "iran_lost_total": 0,
+    "israel_mission_status": {},
+    "iran_mission_status": {},
+    "israel_aircraft_in_repair": [],
+    "iran_aircraft_in_repair": []
+  },
+  "upgrades": {
+    "israel": {
+      "Iron Dome expanded": false,
+      "Third Arrow-2 battalion": false,
+      "MALD (decoy)": false,
+      "More aerial tankers": 0,
+      "Jam-resistant GPS receivers": false,
+      "AIM-120D AMRAAM": false,
+      "EGBU-28C (bunker buster)": false,
+      "AGM-88 HARM Block 5": false
+    },
+    "iran": {
+      "Improved early warning radars": false,
+      "Improved air defense network": false,
+      "Bodyguard laser decoys": false,
+      "GPS jammers": false,
+      "High-fidelity SAM decoys": false,
+      "Pantsyr-S1E (SA-22)": 0,
+      "Additional Tor-M1 (SA-15)": 0,
+      "S-300PMU-1 (SA-20)": 0,
+      "Buk-M1 (SA-11)": 0,
+      "HQ-9 (from PRC)": 0,
+      "Sejil-2 ballistic missile bn.": 0,
+      "R-27ER1 AAM upgrade": false,
+      "EM-55 Guided Mines": false
+    }
+  },
+  "ballistic_missiles": {
+    "iran_ready_battalions": 2,
+    "iran_under_repair_battalions": 0,
+    "iran_expended_battalions": 1,
+    "iran_launched_attacks": []
+  },
+  "soft_war": {
+    "active": true,
+    "side": "Israel",
+    "target": "Fuel Manufacturing Plant",
+    "eta_turn": 7,
+    "mp_spent": 2,
+    "ip_spent": 3,
+    "outcome": null
+  },
+  "target_impacts": {
+    "Fuel Manufacturing Plant": {
+      "primary_targets": {
+        "Fuel Manufacturing Plant B": {
+          "damage_boxes_hit": 1,
+          "max_damage_for_crippled": 2,
+          "max_damage_for_destroyed": 5,
+          "armor_class": 0
+        }
+      },
+      "secondary_targets": {
+        "Transformer Station D": {
+          "damage_boxes_hit": 0,
+          "max_damage_for_crippled": 1,
+          "max_damage_for_destroyed": 2,
+          "armor_class": 0
+        }
+      },
+      "total_production": 0,
+      "current_production_percent": 0.5
+    }
+  },
+  "sam_deployments": [
+    "S-200(Tehran Central)",
+    "Kub-M3(Natanz)"
+  ],
+  "active_events_queue": [
+    {
+      "type": "airstrike_resolution",
+      "scheduled_for": 5,
+      "target": "Natanz Uranium Enrichment Facility",
+      "squadrons": [
+        {
+          "name": "69th",
+          "task": "strike",
+          "type": "F-15I Ra'am"
+        }
+      ],
+      "route": "Central"
+    },
+    {
+      "type": "sw_execution",
+      "scheduled_for": 7,
+      "target": "Fuel Manufacturing Plant",
+      "side": "Israel",
+      "mp_spent": 2,
+      "ip_spent": 3
+    }
+  ],
+  "strategic_event_impact": {
+    "name": "Political Pressure",
+    "details": "Israel loses 2 MP per turn",
+    "turns_remaining": 1
+  },
+  "notes": "Game in progress.",
+  "_meta": {
+    "seed_id": 6,
+    "turn_forced": 1,
+    "phase_forced": "morning",
+    "starter": "israel"
+  }
+}
