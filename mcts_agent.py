@@ -158,16 +158,32 @@ class MCTSAgent:
                 best_n = max((c.N for c in root.children), default=0)
                 print(f"[MCTS] sims={sims_done} bestN={best_n} bestQ={best_q:.3f} children={len(root.children)}")
 
-        # Choose action by highest visit count
-        if not root.children and root.unexpanded_actions:
-            if self.verbose:
-                print("[MCTS] No expansions occurred; returning first legal action.")
-            return root.unexpanded_actions[0]
+       # mcts_agent.py (AFTER)
 
-        best_child = max(root.children, key=lambda n: n.N, default=None)
-        if self.verbose and best_child is not None:
-            print(f"[MCTS] Best action: {best_child.incoming_action} (N={best_child.N}, Q={best_child.Q:.3f})")
-        return best_child.incoming_action if best_child and best_child.incoming_action else {"type": "Pass"}
+            # If no expansions happened, return the first legal move with a 100% policy
+            if not root.children:
+                action = root.unexpanded_actions[0] if root.unexpanded_actions else {"type": "Pass"}
+                policy = {json.dumps(action, sort_keys=True): 1.0}
+                return action, policy
+    
+            # Calculate the policy from the visit counts of the root's children
+            total_visits = sum(child.N for child in root.children)
+            policy = {}
+            if total_visits > 0:
+                for child in root.children:
+                    # The key is the JSON string of the action dictionary
+                    action_key = json.dumps(child.incoming_action, sort_keys=True)
+                    policy[action_key] = child.N / total_visits
+    
+            # The best action is still the one with the most visits
+            best_child = max(root.children, key=lambda n: n.N)
+            best_action = best_child.incoming_action
+    
+            if self.verbose and best_child is not None:
+                print(f"[MCTS] Best action: {best_action} (N={best_child.N}, Q={best_child.Q:.3f})")
+            
+            # Return both the chosen action and the full policy
+            return best_action, policy
 
     # ----------------------------------------------------------------------
     # M C T S   C O R E
