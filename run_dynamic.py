@@ -5,7 +5,8 @@ from typing import Optional, Dict, Any, List
 from game_engine import GameEngine
 from mcts_agent import MCTSAgent
 from rules_global import RULES
-
+from features import initialize_action_space
+from features import initialize_action_space
 # ----------------------------- Optional Gemini hook -----------------------------
 def real_gemini_caller(prompt: str, *, temperature: float = 0.4, max_tokens: int = 1024) -> str:
     """
@@ -159,20 +160,18 @@ def play_full_game(
 
 def main():
     ap = argparse.ArgumentParser(description="Dynamic batch runner for Persian Incursion MCTSAgent.")
+    # --- (Keep all your argparse definitions exactly as they are) ---
     ap.add_argument("--seeds_dir", type=str, required=True, help="Folder containing *.json initial states.")
     ap.add_argument("--mode", choices=["one_step", "full_game", "self_play"], default="full_game")
     ap.add_argument("--episodes", type=int, default=1)
     ap.add_argument("--shuffle", action="store_true", help="Shuffle seeds before running.")
-    ap.add_argument("--simulations", type=int, default=100, help="MCTS simulations per move.")
-    ap.add_argument("--c_puct", type=float, default=1.4, help="PUCT exploration constant (passed to agent).")
+    ap.add_argument("--simulations", type=int, default=300, help="MCTS simulations per move.") # MODIFIED: Set a strong default
+    ap.add_argument("--c_puct", type=float, default=4.0, help="PUCT exploration constant.") # MODIFIED: Set a strong default
     ap.add_argument("--max_plies", type=int, default=200, help="Max plies in full_game mode.")
     ap.add_argument("--save_dir", type=str, default="runs_out", help="Where to save logs/CSV.")
     ap.add_argument("--self_play_dir", type=str, default="self_play_data", help="Where to save self-play data.")
     ap.add_argument("--use_gemini", action="store_true", help="Use Gemini for rollout guidance.")
-
-    # === NEW: optional value model checkpoint ===
     ap.add_argument("--value_ckpt", type=str, default="", help="Path to a torch checkpoint for a value model (optional).")
-
     args = ap.parse_args()
 
     seeds = find_seed_paths(Path(args.seeds_dir))
@@ -189,6 +188,7 @@ def main():
     summary_rows: List[List[Any]] = []
 
     engine = GameEngine(rules=RULES)
+    initialize_action_space(RULES)
     gem_fn = real_gemini_caller if args.use_gemini else None
 
     # === NEW: try to load value model + features (optional) ===================
@@ -216,15 +216,21 @@ def main():
 
     israel_agent = MCTSAgent(
         engine=engine, side="israel",
-        simulations=args.simulations, c_puct=args.c_puct,
-        gemini=gem_fn, verbose=True,
-        value_model=value_model, feature_fn=state_to_features
+        simulations=args.simulations, # This now correctly uses the default of 300
+        c_puct=args.c_puct,           # This now correctly uses the default of 4.0 for exploration
+        gemini=gem_fn, 
+        verbose=True, # Set to True to see MCTS thinking process
+        value_model=value_model, 
+        feature_fn=lambda s: state_to_features(s, RULES)
     )
     iran_agent   = MCTSAgent(
         engine=engine, side="iran",
-        simulations=args.simulations, c_puct=args.c_puct,
-        gemini=gem_fn, verbose=True,
-        value_model=value_model, feature_fn=state_to_features
+        simulations=args.simulations, # This now correctly uses the default of 300
+        c_puct=args.c_puct,           # This now correctly uses the default of 4.0 for exploration
+        gemini=gem_fn, 
+        verbose=True, # Set to True to see MCTS thinking process
+        value_model=value_model, 
+        feature_fn=lambda s: state_to_features(s, RULES)
     )
     model_path = "/content/drive/MyDrive/PersianIncursionAI/models/pv_model_v1.pt"
     if hasattr(israel_agent, "_attach_pv_model"):
