@@ -165,7 +165,45 @@ class GameEngine:
     # ---- CARDS STATE: canonical location ----
     # We will ONLY use: state['players'][side]['deck'|'river'|'discard']
     # where `side` in {'israel','iran'}.
+    # game_engine.py 파일의 GameEngine 클래스 안에 아래 코드를 통째로 추가하세요.
+
+    def _process_event_queue(self, state):
+        
+        turn_no = state.get("turn", {}).get("turn_number", 1)
+        queue = state.get("active_events_queue", [])
+        remaining_events = []
+        resolved_something = False
+
+        if not queue:
+            return
+
+        for event in queue:
+            
+            if int(event.get("scheduled_for", 0)) <= turn_no:
+                event_type = event.get("type")
+                self._log(state, f"[EVENT] Turn {turn_no}: Resolving scheduled event -> {event_type}")
     
+                if event_type == "airstrike_resolution":
+                    self._resolve_airstrike_combat(state, event)
+                elif event_type == "ballistic_missile_impact":
+                    self._resolve_ballistic_missile_impact(state, event)
+                elif event_type == "sw_execution":
+                    self._resolve_sw_execution(state, event)
+                elif event_type == "terror_attack_resolution":
+                    self._resolve_terror_attack(state, event)
+                elif event_type == "rebase_complete":
+                    self._resolve_rebase_complete(state, event)
+                else:
+                    self._log(state, f"[WARN] Unknown event type in queue: {event_type}")
+                    remaining_events.append(event) 
+                
+                resolved_something = True
+            else:
+                
+                remaining_events.append(event)
+
+        if resolved_something:
+            state["active_events_queue"] = remaining_events
     def _ensure_player_cards_branch(self, state, side):
         players = state.setdefault('players', {})
         p = players.setdefault(side, {})
@@ -403,7 +441,11 @@ class GameEngine:
 
     def _card_requires_text(self, side: str, cid: int):
         return self._card_struct(side, cid).get("requires", {}).get("text", "")
-
+    
+    def _requires_satisfied(self, state, side, req_text: str) -> bool:
+        s = (req_text or "").lower()
+        if not s: return True
+        
     def _card_flags(self, side: str, cid: int):
         return set(self._card_struct(side, cid).get("flags", []))
 
@@ -431,14 +473,56 @@ class GameEngine:
     def _mark_last_act(self, state, side, tags):
         state["last_act"] = {"side": side, "tags": list(set(tags))}
 
-    # ------------------------------ PASS & CARDS --------------------------------
-    def _resolve_pass(self, state):
-        side = state.get("turn", {}).get("current_player", "israel")
-        t = state.setdefault("turn", {})
-        t["consecutive_passes"] = t.get("consecutive_passes", 0) + 1
-        self._log(state, f"{side} passes.")
-        return self._advance_turn(state)
+    # --- START: Replace your old _advance_turn and _resolve_pass with these ---
 
+    def _advance_phase(self, state):
+        """Advances the game from one phase (morning, etc.) to the next."""
+        turn = state.setdefault('turn', {})
+        phase = turn.get('phase', 'morning')
+        
+        turn['consecutive_passes'] = 0
+        turn['per_impulse_card_played'] = {'israel': False, 'iran': False} # Reset card play flags
+
+        if phase == 'morning':
+            turn['phase'] = 'afternoon'
+            turn['current_player'] = 'israel'
+        elif phase == 'afternoon':
+            turn['phase'] = 'night'
+            turn['current_player'] = 'israel'
+        elif phase == 'night':
+            # A full day/Map Turn has passed.
+            self._end_of_map_turn_river_step(state)
+            turn['turn_number'] = turn.get('turn_number', 1) + 1
+            turn['phase'] = 'morning'
+            turn['current_player'] = 'israel'
+            self._log(state, f"--- Advancing to Turn {turn['turn_number']} ---")
+            
+            # This is where all morning upkeep should happen.
+            self._handle_morning_upkeep(state)
+
+        self._log(state, f"Phase advances to {turn['phase']}. {turn['current_player']}'s turn.")
+        return state
+
+    def _resolve_pass(self, state):
+        """
+        Handles a single 'Pass' action. Only advances the phase if both players pass consecutively.
+        This is the correct logic that fixes the MCTS simulation bug.
+        """
+        side = state.get("turn", {}).get("current_player")
+        other_player = 'iran' if side == 'israel' else 'israel'
+        
+        state['turn']['consecutive_passes'] = state['turn'].get('consecutive_passes', 0) + 1
+        self._log(state, f"{side} passes.")
+
+        if state['turn']['consecutive_passes'] >= 2:
+            # Both players passed, so advance the whole phase.
+            return self._advance_phase(state)
+        else:
+            # Only one player has passed, so just switch players.
+            state['turn']['current_player'] = other_player
+            return state
+
+    # --- END: Replacement section ---
 
 
     def _black_market_convert(self, state, side, spend_pp=0, spend_ip=0, spend_mp=0, receive="pp"):
@@ -976,85 +1060,83 @@ class GameEngine:
         return int(op) >= int(min_op)
 
 
+   # In game_engine.py, replace the whole get_legal_actions method.
+
+    # In game_engine.py, replace the whole get_legal_actions method with this version.
+
     def get_legal_actions(self, state, side=None):
         side = side or state.get("turn", {}).get("current_player", "israel")
         self._ensure_player_structs(state, side)
         res = state["players"][side]["resources"]
-        river = list(state["players"][side].get("river", []))
-        actions = [{"type": "Pass"}]
+        
+        actions = [{"type": "Pass"}, {"type": "End Impulse"}]
 
-        # --- Cards from river ---
-        card_map = self.rules.get("cards", {}).get(side, {})
-        for cid in river:
-            cdef = card_map.get(cid)
-            if not cdef: 
-                continue
-            cm = self._card_cost_map(side, cid)
-            afford = all(res.get(k, 0) >= cm.get(k, 0) for k in ("pp","ip","mp"))
-            cost_str = (cdef.get("Cost") or "").strip()
-            if not afford and not (cost_str == "--" and (res.get("pp",0)+res.get("ip",0)+res.get("mp",0)) >= 3):
-                continue
-            req_text = self._card_requires_text(side, cid)
-            if req_text and not self._requires_satisfied(state, side, req_text):
-                continue
-            actions.append({"type": "Play Card", "card_id": cid})
+        # --- Card Plays ---
+        # Check if a card has already been played in this impulse
+        per_impulse_played = state.get('turn', {}).get('per_impulse_card_played', {}).get(side, False)
+        if not per_impulse_played:
+            river = state["players"][side].get("river", [])
+            card_map = self.rules.get("cards", {}).get(side, {})
+            
+            for cid in river:
+                if cid is None: 
+                    continue
+                
+                cdef = card_map.get(cid)
+                if not cdef:
+                    continue
 
-        # --- Ops (simple defaults so the agent can choose) ---
-        targets = list(self.rules.get("targets", {}).keys())
+                # --- START OF CRITICAL FIX: Stricter legality checks ---
+                cm = self._card_cost_map(side, cid)
+                
+                # Check for Black Market card and its specific cost condition
+                is_black_market = (cdef.get("Cost") or "").strip() == "--"
+                can_afford_black_market = is_black_market and (res.get("pp", 0) + res.get("ip", 0) + res.get("mp", 0)) >= 3
+                can_afford_normal = not is_black_market and all(res.get(k, 0) >= cm.get(k, 0) for k in ("pp", "ip", "mp"))
+
+                if not (can_afford_normal or can_afford_black_market):
+                    continue # Skip if the player cannot afford the card
+
+                # Check special text requirements (e.g., "Requires Overt Act")
+                req_text = self._card_requires_text(side, cid)
+                if req_text and not self._requires_satisfied(state, side, req_text):
+                    continue # Skip if special requirements are not met
+                # --- END OF CRITICAL FIX ---
+
+                actions.append({"type": "Play Card", "card_id": cid})
+
+        # --- Operational Actions (Airstrikes, Missiles, etc.) ---
+        targets = self.rules.get("VALID_TARGETS", [])
+        
         if side == "israel":
-            # Airstrike
-            ac = self.action_costs.get("airstrike", {"mp": 3, "ip": 3})
-            if res.get("mp",0) >= int(ac.get("mp",3)) and res.get("ip",0) >= int(ac.get("ip",3)):
-                # pick a corridor that’s open
-                for corridor in ("central","north","south"):
+            # Airstrike: Generate an action for every valid target
+            cost = self.action_costs.get("airstrike", {"mp": 3, "ip": 3})
+            if res.get("mp", 0) >= cost["mp"] and res.get("ip", 0) >= cost["ip"]:
+                for corridor in ("central", "north", "south"):
                     if self._corridor_ok(state, corridor):
-                        for t in targets[:4]:
-                            actions.append({
-                                "type": "Order Airstrike",
-                                "target": t,
-                                "squadrons": ["69th","107th"],
-                                "corridor": corridor,
-                                "loadout": {"PGMs": ["GBU-31 JDAM","GBU-39 SDB"]}
-                            })
-                        break
+                        for target in targets:
+                            actions.append({"type": "Order Airstrike", "target": target, "corridor": corridor})
+                        break # Only need one valid corridor to enable airstrikes
+            
             # Special Warfare
-            swc = self.action_costs.get("special_warfare", {"mp": 1, "ip": 1})
-            if res.get("mp",0) >= int(swc.get("mp",1)) and res.get("ip",0) >= int(swc.get("ip",1)):
-                for t in targets[:3]:
-                    actions.append({
-                        "type": "Order Special Warfare",
-                        "target": t,
-                        "mp_cost": int(swc.get("mp",1)),
-                        "ip_cost": int(swc.get("ip",1))
-                    })
+            cost_sw = self.action_costs.get("special_warfare", {"mp": 1, "ip": 1})
+            if res.get("mp", 0) >= cost_sw["mp"] and res.get("ip", 0) >= cost_sw["ip"]:
+                for target in targets:
+                    actions.append({"type": "Order Special Warfare", "target": target})
 
         if side == "iran":
-            # Ballistic missile
-            bmc = self.action_costs.get("ballistic_missile", {"mp": 1})
-            if res.get("mp",0) >= int(bmc.get("mp",1)):
-                for t in targets[:5]:
-                    actions.append({
-                        "type": "Order Ballistic Missile",
-                        "target": t,
-                        "battalions": 1,
-                        "missile_type": "Shahab"
-                    })
-            # Terror attack
-            ttc = self.action_costs.get("terror_attack", {"mp": 1, "ip": 1})
-            if res.get("mp",0) >= int(ttc.get("mp",1)) and res.get("ip",0) >= int(ttc.get("ip",1)):
-                actions.append({
-                    "type": "Order Terror Attack",
-                    "mp_cost": int(ttc.get("mp",1)),
-                    "ip_cost": int(ttc.get("ip",1))
-                })
-        # Enforce “max one card per impulse” (house rule toggle you’re using)
-        side_now = state.get('turn', {}).get('current_player', side)
-        per_impulse = state.get('turn', {}).setdefault('per_impulse_card_played', {'israel': False, 'iran': False}).get(side_now, False)
-        if per_impulse:
-            actions = [a for a in actions if a.get('type') != 'Play Card']
-        actions.append({"type": "End Impulse"})
+            # Ballistic Missile
+            cost_bm = self.action_costs.get("ballistic_missile", {"mp": 1})
+            if res.get("mp", 0) >= cost_bm["mp"]:
+                for target in targets:
+                    actions.append({"type": "Order Ballistic Missile", "target": target})
+            
+            # Terror Attack
+            cost_terror = self.action_costs.get("terror_attack", {"mp": 1, "ip": 1})
+            if res.get("mp", 0) >= cost_terror["mp"] and res.get("ip", 0) >= cost_terror["ip"]:
+                 actions.append({"type": "Order Terror Attack"})
 
-        return actions if actions else [{"type": "Pass"}]
+        return actions
 
 
 
@@ -1421,7 +1503,7 @@ class GameEngine:
                 
                 # Advance the turn number now that a full day passed
                 turn['turn_number'] = int(turn.get('turn_number', 1)) + 1
-                
+                self._process_event_queue(state)
                 # Morning pipeline (binder order)
                 self._morning_reset_resources(state)                  # discard leftover points
                 self._morning_repair_rolls(state)                     # repair rolls
@@ -1537,14 +1619,12 @@ class GameEngine:
         # ---------- End Impulse: hand turn over to opponent ----------
         if t == "End Impulse":
             turn = state.setdefault("turn", {})
-            turn["consecutive_passes"] = turn.get("consecutive_passes", 0) + 1
+            turn["consecutive_passes"] = 2
             return self._advance_turn(state)
 
         
         if t == "Pass":
-            turn = state.setdefault("turn", {})
-            turn["consecutive_passes"] = turn.get("consecutive_passes", 0) + 1
-            return self._advance_turn(state)
+            return self._resolve_pass(state)
 
         # ---------- Play Card (one per impulse) ----------
         if t == "Play Card":
