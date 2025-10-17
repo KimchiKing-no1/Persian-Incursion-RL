@@ -4,14 +4,17 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from features import state_to_features, legal_to_mask
+from features import state_to_features, legal_to_mask, initialize_action_space
 from model import load_value_model
-from run_dynamic import load_seed, make_env, play_one_step  # adapt to your helpers if names differ
+from run_dynamic import load_state, play_full_game
+from game_engine import GameEngine
+from mcts_agent import MCTSAgent
+from rules_global import RULES
 
 def run_selfplay(seeds_dir: str, out_dir: str, model_path: str | None, games: int = 50):
     from features import action_space_size
     out = Path(out_dir); out.mkdir(parents=True, exist_ok=True)
-
+    initialize_action_space(RULES)
     # Build value model (optional)
     in_dim = state_to_features({"turn":{}, "players":{}, "opinion":{}}).shape[0]
     vnet = load_value_model(model_path, in_dim) if model_path else None
@@ -23,7 +26,7 @@ def run_selfplay(seeds_dir: str, out_dir: str, model_path: str | None, games: in
             engine=engine,
             simulations=kw.get("simulations", 300),
             value_model=vnet,
-            feature_fn=state_to_features,
+            feature_fn=lambda s: state_to_features(s, RULES),
             verbose=False,
         )
 
