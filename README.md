@@ -3,7 +3,6 @@
 **Reinforcement Learning framework for the digital wargame _Persian Incursion_.**
 
 This project implements a self-play + training loop using Monte Carlo Tree Search (MCTS) and a policy–value model to explore AI strategies in the _Persian Incursion_ simulation.  
-It supports both **Google Colab** and **Docker GPU** execution environments.
 
 ---
 
@@ -25,7 +24,9 @@ Persian-Incursion-RL/
 ├── self_play_data/            # Generated self-play data
 ├── runs_out_selfplay/         # Simulation output logs
 └── models/                    # Trained model checkpoints
-```bash
+
+
+---
 ## Features
 
 Self-Play Framework — Autonomous two-side simulation using MCTS.
