@@ -6,7 +6,7 @@ from typing import Any, Dict
 
 # ---------- Config ----------
 # Use env PROJECT_DIR or default to /workspace/codes (works in csh_rts)
-PROJECT_DIR = Path(os.environ.get("PROJECT_DIR", "/workspace/codes")).resolve()
+PROJECT_DIR = Path(os.environ.get("PROJECT_DIR", ".")).resolve()
 SEEDS_DIR   = PROJECT_DIR / "seeds"
 OUT_DIR     = PROJECT_DIR / "seeds_turn1_50"
 RUNS_DIR    = PROJECT_DIR / "runs_out_selfplay"
