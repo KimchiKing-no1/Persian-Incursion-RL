@@ -64,7 +64,7 @@ class MCTSAgent:
     ):
         self.engine = engine
         self.side = side.lower().strip()  # 'israel' or 'iran'
-        self.simulations = simulations
+        self.simulations = max(100, simulations)
 
         # ---- unify c_puct / c_uct ----
         if c_puct is not None:
@@ -313,16 +313,24 @@ class MCTSAgent:
         self._transpo[node.key] = node
         return node
 
+
     def _state_key(self, state: Dict[str, Any]) -> str:
         """
         Deterministic, compact key. If state contains unserializable elements,
         fall back to a weaker key.
         """
         try:
-            return json.dumps(state, sort_keys=True, separators=(",", ":"))[:4096]
+            
+            state_for_key = state.copy()
+            
+            
+            state_for_key.pop('_rng', None)
+            state_for_key.pop('_rng_seeded', None)
+
+            return json.dumps(state_for_key, sort_keys=True, separators=(",", ":"))[:4096]
         except Exception:
             return f"{id(state)}:{state.get('turn', {}).get('turn_number')}"
-
+        
     # ----------------------------------------------------------------------
     # L E G A L   M O V E S
     # ----------------------------------------------------------------------
