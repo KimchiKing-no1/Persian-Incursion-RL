@@ -1,6 +1,6 @@
 # game_engine.py
-import copy, random, re
-from typing import Optional
+import copy, random, re, json
+from typing import Optional, List, Dict, Any 
 
 from mechanics import set_rules as mech_set_rules, opinion_roll
 from rules_global import RULES
@@ -143,11 +143,13 @@ def apply_morning_opinion_income(state, carry_cap=None, log_fn=None):
 
 
 class GameEngine:
+    
     # ---------------------------- RNG & LOGGING --------------------------------
     def __init__(self, rules=None):
         self.rules = rules or RULES
         mech_set_rules(self.rules)
-
+        self.strict_parameters = bool(self.rules.get("strict_parameters", True))
+        self.strict_combat_tables = bool(self.rules.get("strict_combat_tables", True))
         self.river_rules = self.rules.get("river_rules", {"slots": 7, "discard_rightmost": True})
         self.restrike_rules = self.rules.get("restrike_rules", {"plan_delay_turns": 1, "execute_window_turns": 1})
         self.action_costs = self.rules.get("action_costs", {})
@@ -162,10 +164,106 @@ class GameEngine:
         self.rules["targets"] = {name: self.rules.get("TARGET_DEFENSES", {}).get(name, {}) for name in tgt_names}
 
         self._cards_index = {"iran": list(iran_map.keys()), "israel": list(israel_map.keys())}
-    # ---- CARDS STATE: canonical location ----
-    # We will ONLY use: state['players'][side]['deck'|'river'|'discard']
-    # where `side` in {'israel','iran'}.
-    # game_engine.py 파일의 GameEngine 클래스 안에 아래 코드를 통째로 추가하세요.
+        
+    def _is_action_effective(self, state: dict, action: dict) -> bool:
+        try:
+            before = self._state_key(state)
+            new_state = self._apply_action_safely(copy.deepcopy(state), action)
+            after = self._state_key(new_state)
+            return before != after
+        except Exception:
+            return False
+
+    def _expand_targeted_placeholders(
+        self, state: dict, side: str, raw_acts: List[Dict[str, Any]]
+    ) -> List[Dict[str, Any]]:
+        """
+        Expand any targeted placeholder actions (target=None) into concrete per-target
+        actions, and filter to keep only actions that actually change state.
+        """
+        targeted_types = {
+            "Order Ballistic Missile",
+            "Order Airstrike",
+            "Order Special Warfare",
+        }
+
+        rules_targets = (self.rules or {}).get("targets", {})
+        valid_targets = list(rules_targets.keys()) if hasattr(rules_targets, "keys") else []
+
+        legal: List[Dict[str, Any]] = []
+        for a in raw_acts:
+            a_type = a.get("type")
+            needs_target = a_type in targeted_types and (a.get("target") is None)
+
+            if not needs_target:
+                legal.append(a)
+                continue
+
+            for tgt in valid_targets:
+                cand = {"type": a_type, "target": tgt}
+
+                quick_ok = True
+                if hasattr(self, "_is_action_legal"):
+                    try:
+                        quick_ok = bool(self._is_action_legal(state, cand))
+                    except Exception:
+                        quick_ok = True
+                if not quick_ok:
+                    continue
+
+                if self._is_action_effective(state, cand):
+                    legal.append(cand)
+
+        # If expansion produced nothing, keep safe fallbacks or the original placeholder
+        if not legal:
+            for a in raw_acts:
+                if a.get("type") in ("Pass", "End Impulse"):
+                    legal.append(a)
+            if not legal:
+                legal = [a for a in raw_acts]
+            if not legal:
+                legal = [{"type": "Pass"}]
+        return legal
+
+
+      
+           
+    def _get_legal_actions_core(self, state: dict, side: str) -> List[Dict[str, Any]]:
+        side = (side or state.get("turn", {}).get("current_player", "israel")).lower()
+        actions: List[Dict[str, Any]] = [{"type": "Pass"}]
+
+        p = state.get("players", {}).get(side, {})
+        r = p.get("resources", {})
+        mp, ip = r.get("mp",0), r.get("ip",0)
+
+        river = p.get("river", [])
+        cards_def = self.rules.get("cards", {}).get(side, {})
+        # one-card-per-impulse rule respected later; here we only advertise options
+        if not state.get("turn", {}).get("per_impulse_card_played", {}).get(side, False):
+            for cid in river:
+                if cid is None: continue
+                cdef = cards_def.get(cid)
+                if not cdef: continue
+                cm = self._card_cost_map(side, cid)
+                if all(r.get(k,0) >= cm.get(k,0) for k in ("pp","ip","mp")):
+                    req_text = self._card_requires_text(side, cid)
+                    if self._requires_satisfied(state, side, req_text):
+                        actions.append({"type":"Play Card", "card_id": cid})
+
+        if side == "israel":
+            if mp >= 3 and ip >= 3:
+                actions.append({"type":"Order Airstrike", "target": None})
+            if mp >= 1 and ip >= 1:
+                actions.append({"type":"Order Special Warfare", "target": None})
+        else:
+            if mp >= 1:
+                actions.append({"type":"Order Ballistic Missile", "target": None})
+            if mp >= 1 and ip >= 1:
+                actions.append({"type":"Order Terror Attack"})
+        return actions
+
+        
+        
 
     def _process_event_queue(self, state):
         
@@ -204,6 +302,7 @@ class GameEngine:
 
         if resolved_something:
             state["active_events_queue"] = remaining_events
+            
     def _ensure_player_cards_branch(self, state, side):
         players = state.setdefault('players', {})
         p = players.setdefault(side, {})
@@ -211,7 +310,8 @@ class GameEngine:
         p.setdefault('river', [None]*7)   # 7 slots (None = hole)
         p.setdefault('discard', [])
         return p
-    
+        
+
     def _normalize_cards_namespaces(self, state):
         """If older state keys exist (e.g. state['israel']['deck']), migrate them once."""
         for side in ('israel','iran'):
@@ -227,6 +327,8 @@ class GameEngine:
 
 
     def _rng(self, state):
+        if self.rules.get("deterministic"):
+            seed = state.setdefault("rng", {}).setdefault("seed", 12345)
         r = state.setdefault('_rng', random.Random())
         seed = state.get("rng", {}).get("seed", None)
         if (seed is not None) and (not state.get("_rng_seeded", False)):
@@ -373,6 +475,9 @@ class GameEngine:
         prof = table.get(weapon_name)
         if prof:
             return prof
+        if self.strict_combat_tables:
+            raise KeyError(f"Weapon '{weapon_name}' missing in PGM table (strict mode).")
+        # non-strict fallback (kept for debugging)
         return {
             "vs": {
                 "soft": {"p_hit": 0.5, "hits": [1]},
@@ -391,13 +496,11 @@ class GameEngine:
 
     def _apply_component_damage(self, state, target, comp, hits):
         td = state.setdefault("target_damage_status", {}).setdefault(target, {})
-        entry = td.get(comp)
-        if isinstance(entry, dict):
-            entry["damage_boxes_hit"] = entry.get("damage_boxes_hit", 0) + int(hits)
-        elif isinstance(entry, int):
-            td[comp] = entry + int(hits)
-        else:
-            td[comp] = {"damage_boxes_hit": int(hits)}
+        entry = td.get(comp, {})
+        if isinstance(entry, int):
+            entry = {"damage_boxes_hit": entry}
+        entry["damage_boxes_hit"] = int(entry.get("damage_boxes_hit", 0)) + int(hits)
+        td[comp] = entry
 
     def _check_alt_victory_flags(self, state):
         # keep or extend with your custom victory logic
@@ -421,10 +524,16 @@ class GameEngine:
                 p["discard"] = []
                 p["river"] = []
                 while len(p["river"]) < river_cap and p["deck"]:
-                    c = p["deck"].pop(0)  # deck was just shuffled; no need to reshuffle here
+                    c = p["deck"].pop(0)
                     p["river"].insert(0, c)
-
                 self._log(state, f"Initialized and dealt a new river for {side}.")
+
+        # one-time turn flags + top-up both rivers to exactly 7
+        t = state.setdefault("turn", {})
+        t.setdefault("per_impulse_card_played", {"israel": False, "iran": False})
+        t.setdefault("consecutive_passes", 0)
+        self._refill_to_seven_if_needed(state)
+
         return state
 
     # --------------------------- CARDS & COSTS ---------------------------------
@@ -444,7 +553,21 @@ class GameEngine:
     
     def _requires_satisfied(self, state, side, req_text: str) -> bool:
         s = (req_text or "").lower()
-        if not s: return True
+        last = state.get("last_act", {})
+        if "last act was dirty" in s and ("dirty" not in last.get("tags", [])):
+            return False
+        if "last act was covert" in s and ("covert" not in last.get("tags", [])):
+            return False
+        if "opponent overt last turn" in s and (state.get("opponent_overt_last_turn") is not True):
+            return False
+        # example: require upgrade
+        if "requires upgrade:" in s:
+            need = s.split("requires upgrade:")[1].strip()
+            have = state.get("upgrades", {}).get(side, set())
+            if need and need not in have:
+                return False
+        return True
+
         
     def _card_flags(self, side: str, cid: int):
         return set(self._card_struct(side, cid).get("flags", []))
@@ -457,70 +580,26 @@ class GameEngine:
         for amt, unit in re.findall(r'(\d+)\s*([PIM])', s.upper()):
             m[{"P": "pp", "I": "ip", "M": "mp"}[unit]] += int(amt)
         return m
-
-    # ------------------------------ RULE GATES ---------------------------------
-    def _requires_satisfied(self, state, side, req_text: str) -> bool:
-        s = (req_text or "").lower()
-        last = state.get("last_act", {})
-        if "last act was dirty" in s and ("dirty" not in last.get("tags", [])):
-            return False
-        if "last act was covert" in s and ("covert" not in last.get("tags", [])):
-            return False
-        if "opponent overt last turn" in s and (state.get("opponent_overt_last_turn") is not True):
-            return False
-        return True
-
+    
     def _mark_last_act(self, state, side, tags):
         state["last_act"] = {"side": side, "tags": list(set(tags))}
 
     # --- START: Replace your old _advance_turn and _resolve_pass with these ---
 
-    def _advance_phase(self, state):
-        """Advances the game from one phase (morning, etc.) to the next."""
-        turn = state.setdefault('turn', {})
-        phase = turn.get('phase', 'morning')
-        
-        turn['consecutive_passes'] = 0
-        turn['per_impulse_card_played'] = {'israel': False, 'iran': False} # Reset card play flags
-
-        if phase == 'morning':
-            turn['phase'] = 'afternoon'
-            turn['current_player'] = 'israel'
-        elif phase == 'afternoon':
-            turn['phase'] = 'night'
-            turn['current_player'] = 'israel'
-        elif phase == 'night':
-            # A full day/Map Turn has passed.
-            self._end_of_map_turn_river_step(state)
-            turn['turn_number'] = turn.get('turn_number', 1) + 1
-            turn['phase'] = 'morning'
-            turn['current_player'] = 'israel'
-            self._log(state, f"--- Advancing to Turn {turn['turn_number']} ---")
-            
-            # This is where all morning upkeep should happen.
-            self._handle_morning_upkeep(state)
-
-        self._log(state, f"Phase advances to {turn['phase']}. {turn['current_player']}'s turn.")
-        return state
+    
 
     def _resolve_pass(self, state):
-        """
-        Handles a single 'Pass' action. Only advances the phase if both players pass consecutively.
-        This is the correct logic that fixes the MCTS simulation bug.
-        """
         side = state.get("turn", {}).get("current_player")
-        other_player = 'iran' if side == 'israel' else 'israel'
-        
-        state['turn']['consecutive_passes'] = state['turn'].get('consecutive_passes', 0) + 1
+        other = 'iran' if side == 'israel' else 'israel'
+        t = state.setdefault('turn', {})
+        t['consecutive_passes'] = t.get('consecutive_passes', 0) + 1
         self._log(state, f"{side} passes.")
-
-        if state['turn']['consecutive_passes'] >= 2:
-            # Both players passed, so advance the whole phase.
-            return self._advance_phase(state)
+        if t['consecutive_passes'] >= 2:
+            return self._advance_turn(state)
         else:
-            # Only one player has passed, so just switch players.
-            state['turn']['current_player'] = other_player
+            t['current_player'] = other
             return state
+
 
     # --- END: Replacement section ---
 
@@ -1060,173 +1139,213 @@ class GameEngine:
         return int(op) >= int(min_op)
 
 
-   # In game_engine.py, replace the whole get_legal_actions method.
+
 
     # In game_engine.py, replace the whole get_legal_actions method with this version.
+    def _require(self, state, cond, msg):
+        if not cond:
+            self._log(state, f"[REFUSED] {msg}")
+        return bool(cond)
 
     def get_legal_actions(self, state, side=None):
-        side = side or state.get("turn", {}).get("current_player", "israel")
-        self._ensure_player_structs(state, side)
-        res = state["players"][side]["resources"]
-        
-        actions = [{"type": "Pass"}, {"type": "End Impulse"}]
+        side = (side or state.get("turn", {}).get("current_player", "israel")).lower()
+        raw = self._get_legal_actions_core(state, side)
+        if not self.strict_parameters:
+            return self._expand_targeted_placeholders(state, side, raw)
 
-        # --- Card Plays ---
-        # Check if a card has already been played in this impulse
-        per_impulse_played = state.get('turn', {}).get('per_impulse_card_played', {}).get(side, False)
-        if not per_impulse_played:
-            river = state["players"][side].get("river", [])
-            card_map = self.rules.get("cards", {}).get(side, {})
-            
-            for cid in river:
-                if cid is None: 
+        # STRICT: remove any action that has unspecified critical fields
+        strict = []
+        for a in raw:
+            t = a.get("type")
+            if t in ("Order Airstrike", "Order Special Warfare", "Order Ballistic Missile"):
+                # target must be present (no None)
+                if not a.get("target"):
                     continue
-                
-                cdef = card_map.get(cid)
-                if not cdef:
-                    continue
+            strict.append(a)
+        return strict
 
-                # --- START OF CRITICAL FIX: Stricter legality checks ---
-                cm = self._card_cost_map(side, cid)
-                
-                # Check for Black Market card and its specific cost condition
-                is_black_market = (cdef.get("Cost") or "").strip() == "--"
-                can_afford_black_market = is_black_market and (res.get("pp", 0) + res.get("ip", 0) + res.get("mp", 0)) >= 3
-                can_afford_normal = not is_black_market and all(res.get(k, 0) >= cm.get(k, 0) for k in ("pp", "ip", "mp"))
 
-                if not (can_afford_normal or can_afford_black_market):
-                    continue # Skip if the player cannot afford the card
+    def _apply_action_safely(self, state, action):
+        state.setdefault("active_events_queue", [])
+        try:
+            t = action.get("type")
 
-                # Check special text requirements (e.g., "Requires Overt Act")
-                req_text = self._card_requires_text(side, cid)
-                if req_text and not self._requires_satisfied(state, side, req_text):
-                    continue # Skip if special requirements are not met
-                # --- END OF CRITICAL FIX ---
+            if t == "Pass":
+                state.setdefault("turn", {}).update({"passed": True})
+                return state
 
-                actions.append({"type": "Play Card", "card_id": cid})
+            if t == "Play Card":
+                player = state.get("turn", {}).get("current_player", "israel")
+                state["last_playcard_probe"] = {"side": player, "card_id": action.get("card_id")}
+                return state
 
-        # --- Operational Actions (Airstrikes, Missiles, etc.) ---
-        targets = self.rules.get("VALID_TARGETS", [])
-        
-        if side == "israel":
-            # Airstrike: Generate an action for every valid target
-            cost = self.action_costs.get("airstrike", {"mp": 3, "ip": 3})
-            if res.get("mp", 0) >= cost["mp"] and res.get("ip", 0) >= cost["ip"]:
-                for corridor in ("central", "north", "south"):
-                    if self._corridor_ok(state, corridor):
-                        for target in targets:
-                            actions.append({"type": "Order Airstrike", "target": target, "corridor": corridor})
-                        break # Only need one valid corridor to enable airstrikes
-            
-            # Special Warfare
-            cost_sw = self.action_costs.get("special_warfare", {"mp": 1, "ip": 1})
-            if res.get("mp", 0) >= cost_sw["mp"] and res.get("ip", 0) >= cost_sw["ip"]:
-                for target in targets:
-                    actions.append({"type": "Order Special Warfare", "target": target})
+            # STRICT gate for ops
+            if t == "Order Airstrike":
+                # require full params
+                if self.strict_parameters and (not action.get("target") or not action.get("squadrons") or not action.get("corridor")):
+                    # do not mutate
+                    return state
+                # shallow probe only: don't queue real resolution here
+                tmp = dict(action)
+                state["_probe_airstrike"] = {"target": tmp.get("target"), "squadrons": bool(tmp.get("squadrons")), "corridor": tmp.get("corridor")}
+                return state
 
-        if side == "iran":
-            # Ballistic Missile
-            cost_bm = self.action_costs.get("ballistic_missile", {"mp": 1})
-            if res.get("mp", 0) >= cost_bm["mp"]:
-                for target in targets:
-                    actions.append({"type": "Order Ballistic Missile", "target": target})
-            
-            # Terror Attack
-            cost_terror = self.action_costs.get("terror_attack", {"mp": 1, "ip": 1})
-            if res.get("mp", 0) >= cost_terror["mp"] and res.get("ip", 0) >= cost_terror["ip"]:
-                 actions.append({"type": "Order Terror Attack"})
+            if t == "Order Ballistic Missile":
+                if self.strict_parameters and (not action.get("target") or int(action.get("battalions", 0)) < 1):
+                    return state
+                state["_probe_bm"] = {"target": action.get("target"), "battalions": int(action.get("battalions", 0))}
+                return state
 
-        return actions
+            if t == "Order Terror Attack":
+                # nothing to probe, but don't enqueue
+                state["_probe_terror"] = True
+                return state
+
+            return state
+        except Exception:
+            return state
 
 
 
+    def _state_key(self, state: dict) -> str:
+        try:
+            st = dict(state)
+            st.pop("_rng", None); st.pop("_rng_seeded", None); st.pop("log", None)
+            def _safe(v):
+                if isinstance(v, dict):  return {k: _safe(x) for k, x in v.items()}
+                if isinstance(v, list):  return [_safe(x) for x in v]
+                if isinstance(v, (set, tuple)): return sorted([_safe(x) for x in v])
+                if isinstance(v, float): return round(v, 6)
+                return v
+            import json, hashlib
+            blob = json.dumps(_safe(st), sort_keys=True, separators=(",",":"))
+            return hashlib.blake2b(blob.encode(), digest_size=16).hexdigest()
+        except Exception:
+            return f"{id(state)}:{state.get('turn', {}).get('turn_number')}"
+
+
+
+    def _cost_extract(self, cost: str, letter: str) -> int:
+        """
+        Extract numeric requirement for a letter ('P','I','M') from a cost string.
+        Robust to formats like '3P, 2I' or '1 M'.
+        """
+        letter = letter.upper()
+        total = 0
+        cur_num = ""
+        for ch in cost:
+            if ch.isdigit():
+                cur_num += ch
+            elif ch.isalpha():
+                if cur_num and ch.upper() == letter:
+                    total += int(cur_num)
+                cur_num = ""
+            else:
+                cur_num = ""
+        return total
     # ------------------------------ EVENT RESOLVERS -----------------------------
     def _resolve_airstrike_combat(self, state, event):
         target = event.get('target')
         side = event.get('side', 'israel')
-        squadrons_data = event.get('squadrons', [])
-        loadout = event.get('loadout', {})
+        squadrons_data = event.get('squadrons') or []
+        loadout = event.get('loadout') or {}
+        corridor = event.get('corridor')
+
         trules = self.rules.get('targets', {}).get(target)
-        self._check_alt_victory_flags(state)
         if not trules:
-            self._log(state, f"Airstrike: target '{target}' not found. No effect.")
+            self._log(state, f"[AIRSTRIKE] target '{target}' not found. Aborting.")
             return
 
+        if self.strict_parameters:
+            if not squadrons_data or not isinstance(squadrons_data, list):
+                self._log(state, "[AIRSTRIKE] missing or empty 'squadrons'. Aborting.")
+                return
+            # every aircraft must have explicit weapons; no global default
+            for sq in squadrons_data:
+                sq_name = (sq.get("name") if isinstance(sq, dict) else sq)
+                if sq_name not in loadout or not loadout.get(sq_name):
+                    self._log(state, f"[AIRSTRIKE] loadout missing for squadron '{sq_name}'. Aborting.")
+                    return
+
+        # combat tables must exist in rules when strict
+        sam_table = (self.rules.get('sam_table') or self.rules.get('SAM_COMBAT_TABLE') or {})
+        aaa_table = (self.rules.get('aaa_table') or self.rules.get('AAA_COMBAT_TABLE') or {})
+        pgm_table = (self.rules.get('pgm_table') or self.rules.get('PGM_ATTACK_TABLE') or {})
+        if self.strict_combat_tables and (not sam_table or not aaa_table or not pgm_table):
+            self._log(state, "[AIRSTRIKE] missing SAM/AAA/PGM tables in rules. Aborting.")
+            return
+
+        # build package explicitly (no hidden defaults)
         package = []
         squadron_names = []
-                # helper: remove one aircraft and record the loss for the attacker
-        def _kill_one():
-            if not package:
-                return
-            package.pop(self._rng(state).randrange(len(package)))
-            # Attacking side is 'side' (Israel by default); count the loss
-            try:
-                self._register_aircraft_loss(state, side=side, count=1)
-            except Exception:
-                # be defensive: if helper not present, just continue
-                pass
-
         for sq_entry in squadrons_data:
-            squadron_name = sq_entry.get("name") or sq_entry.get("id") if isinstance(sq_entry, dict) else sq_entry
-            if not squadron_name:
+            sq_name = (sq_entry.get("name") or sq_entry.get("id")) if isinstance(sq_entry, dict) else sq_entry
+            if not sq_name: 
                 continue
-            squadron_names.append(squadron_name)
-            count = self._get_aircraft_count_for_squadron(state, side, squadron_name)
-            for _ in range(count):
-                package.append({"sq": squadron_name, "hp": 1, "weapons": list(loadout.get(squadron_name, []))})
+            squadron_names.append(sq_name)
+            count = self._get_aircraft_count_for_squadron(state, side, sq_name)
+            # strictly use per-squadron loadout provided
+            weapons_for_sq = loadout.get(sq_name, [])
+            for _ in range(max(0, count)):
+                package.append({"sq": sq_name, "hp": 1, "weapons": list(weapons_for_sq)})
 
-        self._log(state, f"Package: {len(package)} a/c from {squadron_names} vs {target}.")
+        def _kill_one():
+            if not package: return
+            package.pop(self._rng(state).randrange(len(package)))
+            try: self._register_aircraft_loss(state, side=side, count=1)
+            except Exception: pass
 
+        # layered defenses — only use IDs that exist in tables
         def run_sam_layer(sam_names, layer_name):
-            if not sam_names:
-                return
-            sam_table = self.rules.get('sam_table', {}) or self.rules.get('SAM_COMBAT_TABLE', {})
+            if not sam_names: return
             rng = self._rng(state)
             engaged = 0
             for sam in sam_names:
-                prof = sam_table.get(sam, {})
-                shots = int(prof.get('shots', prof.get('attacks_per_turn', 2)))
-                to_hit = float(prof.get('p_hit', prof.get('p_kill', 0.3)))
+                prof = sam_table.get(sam)
+                if not prof:
+                    if self.strict_combat_tables:
+                        self._log(state, f"[{layer_name}] '{sam}' not in SAM table; skipping.")
+                    continue
+                shots = int(prof.get('shots', prof.get('attacks_per_turn', 0)))
+                p = float(prof.get('p_hit', prof.get('p_kill', 0.0)))
                 ecm_mod = -0.05 if (side == 'israel' and 'EA-18G Support' in state.get('upgrades', {}).get('israel', set())) else 0.0
                 for _ in range(max(0, shots)):
-                    if not package:
-                        break
+                    if not package: break
                     engaged += 1
-                    if rng.random() < max(0.0, min(1.0, to_hit + ecm_mod)):
+                    if rng.random() < max(0.0, min(1.0, p + ecm_mod)):
                         _kill_one()
-            self._log(state, f"{layer_name}: engaged {engaged} shots; survivors {len(package)}.")
+            self._log(state, f"{layer_name}: shots {engaged}; survivors {len(package)}.")
 
         def run_aaa_layer(aaa_names):
-            if not aaa_names:
-                return
-            aaa_table = self.rules.get('aaa_table', {}) or self.rules.get('AAA_COMBAT_TABLE', {})
+            if not aaa_names: return
             rng = self._rng(state)
             engaged = 0
             for aaa in aaa_names:
-                prof = aaa_table.get(aaa, {})
-                area = int(prof.get('area', 3))
-                p_kill = float(prof.get('p_kill', 0.08))
+                prof = aaa_table.get(aaa)
+                if not prof:
+                    if self.strict_combat_tables:
+                        self._log(state, f"[AAA] '{aaa}' not in AAA table; skipping.")
+                    continue
+                area = int(prof.get('area', 0))
+                p_kill = float(prof.get('p_kill', 0.0))
                 k = min(area, len(package))
-                idxs = list(range(len(package)))
-                rng.shuffle(idxs)
+                idxs = list(range(len(package))); rng.shuffle(idxs)
                 for idx in sorted(idxs[:k], reverse=True):
                     engaged += 1
                     if rng.random() < p_kill:
                         _kill_one()
-            self._log(state, f"AAA: engaged {engaged} a/c; survivors {len(package)}.")
+            self._log(state, f"AAA: engagements {engaged}; survivors {len(package)}.")
 
         def run_gci_fighters(gci):
-            if not gci:
-                return
+            if not gci: return
             rng = self._rng(state)
             engaged = 0
             for f in gci:
-                count = int(f.get('count', 1))
-                attacks = int(f.get('attacks_per', 1))
-                p_kill = float(f.get('p_kill', 0.2))
-                for _ in range(count * attacks):
-                    if not package:
-                        break
+                count = int(f.get('count', 0))
+                attacks = int(f.get('attacks_per', 0))
+                p_kill = float(f.get('p_kill', 0.0))
+                for _ in range(max(0, count*attacks)):
+                    if not package: break
                     engaged += 1
                     if rng.random() < p_kill:
                         _kill_one()
@@ -1241,24 +1360,29 @@ class GameEngine:
             self._log(state, "All attackers lost before weapons release.")
             return
 
+        # weapons release: strictly use PGM table; no fallbacks or global PGMs
         prim = list((trules or {}).get('Primary_Targets', {}).keys())
         sec  = list((trules or {}).get('Secondary_Targets', {}).keys())
         comps_order = prim + sec if prim else sec
 
-        for ac in package:
-            wlist = ac.get('weapons', [])
-            if not wlist and isinstance(event.get("loadout"), dict):
-                global_pgms = event["loadout"].get("PGMs", [])
-                if global_pgms:
-                    wlist = [{"weapon": wname, "qty": 1} for wname in global_pgms]
-            if not wlist:
-                wlist = [{"weapon": "Mk-82", "qty": 2}]
+        if not comps_order:
+            self._log(state, "[AIRSTRIKE] target has no components. Aborting.")
+            return
 
-            for w in wlist:
-                wname = w.get('weapon', 'Mk-82')
-                qty = int(w.get('qty', 1))
-                prof = self._get_weapon_profile(wname)
-                reliability = float(prof.get('reliability', 0.9))
+        for ac in package:
+            for w in (ac.get('weapons') or []):
+                wname = w.get('weapon')
+                qty = int(w.get('qty', 0))
+                if not wname or qty <= 0:
+                    self._log(state, f"[AIRSTRIKE] invalid weapon entry {w}; skipping.")
+                    continue
+                prof = pgm_table.get(wname)
+                if not prof:
+                    if self.strict_combat_tables:
+                        self._log(state, f"[AIRSTRIKE] weapon '{wname}' missing in PGM table; aborting release for this weapon.")
+                    continue
+                reliability = float(prof.get('reliability', 1.0 if self.strict_combat_tables else 0.9))
+                vs_tbl = prof.get('vs', {})
                 for _ in range(qty):
                     if self._rng(state).random() > reliability:
                         self._log(state, f"{wname} failed reliability.")
@@ -1267,11 +1391,14 @@ class GameEngine:
                     if not comp:
                         continue
                     armor = self._armor_class_of_component(trules, comp)
-                    vs = prof.get('vs', {}).get(armor, {"p_hit": 0.25, "hits": [1]})
-                    p_hit = float(vs.get('p_hit', 0.25))
+                    vs = vs_tbl.get(armor)
+                    if not vs:
+                        self._log(state, f"{wname} has no vs.{armor} profile; skipping.")
+                        continue
+                    p_hit = float(vs.get('p_hit', 0.0))
                     if self._rng(state).random() <= p_hit:
-                        hits = self._choice(state, vs.get('hits', [1]))
-                        self._apply_component_damage(state, target, comp, int(hits))
+                        hits = int(self._choice(state, vs.get('hits', [1])))
+                        self._apply_component_damage(state, target, comp, hits)
                         self._log(state, f"{wname} hit {target}:{comp} ({armor}) for {hits} box(es).")
                     else:
                         self._log(state, f"{wname} missed {target}:{comp} ({armor}).")
@@ -1279,33 +1406,55 @@ class GameEngine:
         for sq_name in squadron_names:
             state.setdefault('squadrons', {}).setdefault(side, {})
             state['squadrons'][side][sq_name] = 'Returning'
+
+        self._check_alt_victory_flags(state)
+        self._recompute_oil_production(state)
+        self._check_nuclear_victory_roll(state)
+
+           
     def _resolve_order_airstrike(self, state, action, do_advance=True):
+        # hard requirements
+        if not self._require(state, action.get("target"), "Airstrike missing 'target'"): return state
+        if not self._require(state, action.get("squadrons"), "Airstrike missing 'squadrons'"): return state
+        if not self._require(state, action.get("corridor"), "Airstrike missing 'corridor'"): return state
+
+        # affordability
         res = state['players']['israel']['resources']
         ac = self.action_costs.get("airstrike", {"mp": 3, "ip": 3})
         need_mp, need_ip = int(ac.get("mp",3)), int(ac.get("ip",3))
         if res.get('mp',0) < need_mp or res.get('ip',0) < need_ip:
             self._log(state, "Israel cannot afford airstrike.")
             return state
-        corridor = action.get("corridor","central")
+
+        # corridor gating
+        corridor = action.get("corridor")
         if not self._corridor_ok(state, corridor):
             self._log(state, f"Airstrike blocked: corridor '{corridor}' not available.")
             return state
+
+        # consume
         res['mp'] -= need_mp; res['ip'] -= need_ip
+
+        # schedule with explicit parameters only (no auto weapons later)
         ev = {
             "type": "airstrike_resolution",
             "scheduled_for": state['turn']['turn_number'] + 1,
             "side": "israel",
-            "target": action.get("target"),
-            "squadrons": list(action.get("squadrons", [])),
-            "loadout": action.get("loadout", {})
+            "target": action["target"],
+            "squadrons": list(action["squadrons"]),
+            "loadout": action.get("loadout", {}),   # expect { "SQ_NAME": [ {weapon, qty}, ...], ... }
+            "corridor": corridor,
         }
         state.setdefault('active_events_queue', []).append(ev)
         self._mark_last_act(state, "israel", ["overt"])
-        self._log(state, f"Airstrike ordered vs {ev['target']} by {ev['squadrons']}.")
+        self._log(state, f"Airstrike ordered vs {ev['target']} by {ev['squadrons']} via {corridor}.")
         state.setdefault("turn", {})["consecutive_passes"] = 0
         return self._advance_turn(state) if do_advance else state
 
+
     def _resolve_order_special_warfare(self, state, action, do_advance=True):
+        if not self._require(state, action.get("target"), "Special Warfare missing 'target'"):
+            return state 
         res = state['players']['israel']['resources']
         swc = self.action_costs.get("special_warfare", {"mp": 1, "ip": 1})
         mp = int(action.get("mp_cost", swc.get("mp",1)))
@@ -1328,6 +1477,10 @@ class GameEngine:
         return self._advance_turn(state) if do_advance else state
 
     def _resolve_order_ballistic_missile(self, state, action, do_advance=True):
+        if not self._require(state, action.get("target"), "Ballistic Missile missing 'target'"):
+            return state
+        if not self._require(state, int(action.get("battalions", 1)) >= 1, "Ballistic Missile needs battalions >= 1"):
+            return state
         res = state['players']['iran']['resources']
         bmc = self.action_costs.get("ballistic_missile", {"mp": 1})
         mp_cost = int(bmc.get("mp",1)) * max(1, int(action.get("battalions",1)))
@@ -1347,6 +1500,8 @@ class GameEngine:
         self._mark_last_act(state, "iran", ["overt"])
         self._log(state, f"BM launch queued ({ev['missile_type']} x{ev['battalions']}) vs {ev['target']}.")
         state.setdefault("turn", {})["consecutive_passes"] = 0
+        self._recompute_oil_production(state)
+        self._check_nuclear_victory_roll(state)  # if you want periodic checks
         return self._advance_turn(state) if do_advance else state
 
     def _resolve_order_terror_attack(self, state, action, do_advance=True):
@@ -1373,16 +1528,15 @@ class GameEngine:
     def _resolve_ballistic_missile_impact(self, state, event):
         target = event.get('target')
         trules = self.rules.get('targets', {}).get(target)
-        self._check_alt_victory_flags(state)
         if not trules:
-            self._log(state, f"BM: target '{target}' not found.")
+            self._log(state, f"BM: target '{target}' not found. Aborting.")
             return
-        mtype = event.get('missile_type', 'Shahab')
-        battalions = int(event.get('battalions', 1))
-
+        mtype = event.get('missile_type')
         bm_table = self.rules.get('bm_table', {})
+        if self.strict_combat_tables and (not mtype or mtype not in bm_table):
+            self._log(state, f"BM: missile type '{mtype}' missing in bm_table. Aborting.")
+            return
         prof = bm_table.get(mtype, {"p_hit": 0.33, "p_backlash": 1/6, "hits": 1})
-
         comps = list(trules.get('Primary_Targets', {}).keys()) + list(trules.get('Secondary_Targets', {}).keys())
         if not comps:
             return
@@ -1400,18 +1554,27 @@ class GameEngine:
                 if self._rng(state).random() <= float(prof['p_backlash']):
                     state.setdefault('opinion', {}).setdefault('third_parties', {})
                     state['opinion']['third_parties']['un'] = state['opinion']['third_parties'].get('un', 0) - 1
+                    tp = self._tp(state)
+                    tp["un"] = tp.get("un", 0) - 1
                     self._log(state, "BM mishap/backlash: UN -1.")
             else:
                 if self._roll(state, 6) == 1:
                     state.setdefault('opinion', {}).setdefault('third_parties', {})
                     state['opinion']['third_parties']['un'] = state['opinion']['third_parties'].get('un', 0) - 1
+                    tp = self._tp(state)
+                    tp["un"] = tp.get("un", 0) - 1
                     self._log(state, "BM mishap/backlash: UN -1.")
-
+        self._recompute_oil_production(state)
+        self._check_nuclear_victory_roll(state)  # if you want periodic checks
+        
     def _resolve_sw_execution(self, state, event):
         target = event.get('target')
         trules = self.rules.get('targets', {}).get(target)
-        self._check_alt_victory_flags(state)
         if not trules:
+            self._log(state, "SW: target not found. Aborting.")
+            return
+        if self.strict_parameters and int(event.get('points_spent', 0)) <= 0:
+            self._log(state, "SW: points_spent <= 0. Aborting.")
             return
         pts = int(event.get('points_spent', 0))
         roll = self._roll(state, 6) + (pts // 2)
@@ -1419,6 +1582,7 @@ class GameEngine:
         prim = list(trules.get('Primary_Targets', {}).keys())
         sec = list(trules.get('Secondary_Targets', {}).keys())
         pool = sec if roll < 9 else (prim or sec)
+        
         if roll >= 6 and pool:
             comp = self._choice(state, pool)
             hits = 1 + (1 if self._roll(state, 6) >= 4 else 0)
@@ -1426,7 +1590,9 @@ class GameEngine:
             self._log(state, f"SW success (roll {roll}) vs {target}:{comp} for {hits} box(es).")
         else:
             self._log(state, f"SW failed (roll {roll}).")
-
+        self._recompute_oil_production(state)
+        self._check_nuclear_victory_roll(state)  # if you want periodic checks
+    
     def _resolve_terror_attack(self, state, event):
         inten = int(event.get('intensity', 2))
         state.setdefault('opinion', {}).setdefault('domestic', {})
@@ -1434,6 +1600,8 @@ class GameEngine:
         if inten >= 4:
             state.setdefault('opinion', {}).setdefault('third_parties', {})
             state['opinion']['third_parties']['usa'] = state['opinion']['third_parties'].get('usa', 0) - 1
+            tp = self._tp(state)
+            tp["usa"] = tp.get("usa", 0) - 1
         self._log(state, f"Terror attack resolved (intensity {inten}).")
 
     def _resolve_rebase_complete(self, state, event):
@@ -1446,6 +1614,11 @@ class GameEngine:
         if dest:
             ad['location'] = dest
         self._log(state, f"Air defense unit {unit_id} rebased to {dest} and is Ready.")
+    def _losses_add(self, state, side, kind, n=1):
+        st = state.setdefault("losses", {})
+        st[f"{side}_{kind}"] = st.get(f"{side}_{kind}", 0) + int(n)
+    
+    # use: tp = _tp(state); tp["un"] = tp.get("un",0) - 1
 
     # -------------------------- TURN ADVANCEMENT & UPKEEP ----------------------
     def _reset_impulse_flags(self, state):
@@ -1481,7 +1654,8 @@ class GameEngine:
         cur   = turn.get('current_player', 'israel')
         other = 'iran' if cur == 'israel' else 'israel'
     
-        # If both just passed, close this phase
+        if phase in ("morning","afternoon","night"):
+            self._process_event_queue(state) 
         if turn.get('consecutive_passes', 0) >= 2:
             turn['consecutive_passes'] = 0
     
@@ -1722,8 +1896,12 @@ class GameEngine:
         # Fallback (shouldn’t happen often)
         self._log(state, f"Unknown or unhandled action '{t}'.")
         return state
-
-
+    
+    @staticmethod
+    def _tp(state):
+        o = state.setdefault("opinion", {})
+        return o.setdefault("third_party", o.pop("third_parties", {}))
+    
     def _resolve_play_card_keep_impulse(self, state, action):
         """
         Same as _resolve_play_card but does NOT advance the turn; keeps the impulse alive.
