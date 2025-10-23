@@ -1,0 +1,7705 @@
+{
+  "game_id": "game_0010_1761074573",
+  "winner": "israel",
+  "plies": [
+    {
+      "ply": 1,
+      "side": "israel",
+      "action": {
+        "type": "Play Card",
+        "card_id": 34
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "israel",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 3,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              34,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              35,
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": []
+          },
+          "iran": {
+            "resources": {
+              "pp": 3,
+              "ip": 3,
+              "mp": 2
+            },
+            "river": [
+              8,
+              1,
+              13,
+              3,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              34,
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": []
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 0,
+            "iran": -1
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran."
+        ]
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.19,
+        "{\"card_id\": 34, \"type\": \"Play Card\"}": 0.24,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.19,
+        "{\"card_id\": 16, \"type\": \"Play Card\"}": 0.19,
+        "{\"card_id\": 36, \"type\": \"Play Card\"}": 0.19
+      }
+    },
+    {
+      "ply": 2,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "israel",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              35,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 3,
+              "ip": 3,
+              "mp": 2
+            },
+            "river": [
+              8,
+              1,
+              13,
+              3,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              34,
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": []
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": -1
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support"
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": []
+        }
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 3,
+      "side": "iran",
+      "action": {
+        "type": "Play Card",
+        "card_id": 3
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "iran",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": false
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              35,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 3,
+              "ip": 3,
+              "mp": 2
+            },
+            "river": [
+              8,
+              1,
+              13,
+              3,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              34,
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": []
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": -1
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": []
+        }
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.13,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.13,
+        "{\"card_id\": 1, \"type\": \"Play Card\"}": 0.13,
+        "{\"card_id\": 3, \"type\": \"Play Card\"}": 0.31,
+        "{\"card_id\": 12, \"type\": \"Play Card\"}": 0.13,
+        "{\"type\": \"Order Terror Attack\"}": 0.17
+      }
+    },
+    {
+      "ply": 4,
+      "side": "iran",
+      "action": {
+        "type": "Order Terror Attack"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "iran",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": true
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              35,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 2
+            },
+            "river": [
+              34,
+              8,
+              1,
+              13,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful"
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": []
+        }
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.38,
+        "{\"type\": \"Order Terror Attack\"}": 0.62
+      }
+    },
+    {
+      "ply": 5,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "iran",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": true
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              35,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 2,
+              "mp": 1
+            },
+            "river": [
+              34,
+              8,
+              1,
+              13,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2)."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        }
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.51,
+        "{\"type\": \"Order Terror Attack\"}": 0.49
+      }
+    },
+    {
+      "ply": 6,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "israel",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": true
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              35,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 2,
+              "mp": 1
+            },
+            "river": [
+              34,
+              8,
+              1,
+              13,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        }
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 7,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "israel",
+          "phase": "afternoon",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              35,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 2,
+              "mp": 1
+            },
+            "river": [
+              34,
+              8,
+              1,
+              13,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        }
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.25,
+        "{\"card_id\": 35, \"type\": \"Play Card\"}": 0.25,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.25,
+        "{\"card_id\": 16, \"type\": \"Play Card\"}": 0.25
+      }
+    },
+    {
+      "ply": 8,
+      "side": "iran",
+      "action": {
+        "type": "Order Terror Attack"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "iran",
+          "phase": "afternoon",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              35,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 2,
+              "mp": 1
+            },
+            "river": [
+              34,
+              8,
+              1,
+              13,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        }
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.47,
+        "{\"type\": \"Order Terror Attack\"}": 0.53
+      }
+    },
+    {
+      "ply": 9,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "iran",
+          "phase": "afternoon",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              35,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 1,
+              "mp": 0
+            },
+            "river": [
+              34,
+              8,
+              1,
+              13,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2)."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        }
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 10,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "israel",
+          "phase": "afternoon",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              35,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 1,
+              "mp": 0
+            },
+            "river": [
+              34,
+              8,
+              1,
+              13,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        }
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.27,
+        "{\"card_id\": 35, \"type\": \"Play Card\"}": 0.24,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.24,
+        "{\"card_id\": 16, \"type\": \"Play Card\"}": 0.25
+      }
+    },
+    {
+      "ply": 11,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "israel",
+          "phase": "night",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              35,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 1,
+              "mp": 0
+            },
+            "river": [
+              34,
+              8,
+              1,
+              13,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        }
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.25,
+        "{\"card_id\": 35, \"type\": \"Play Card\"}": 0.25,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.25,
+        "{\"card_id\": 16, \"type\": \"Play Card\"}": 0.25
+      }
+    },
+    {
+      "ply": 12,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 1,
+          "current_player": "iran",
+          "phase": "night",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 0,
+              "ip": 3,
+              "mp": 4
+            },
+            "river": [
+              35,
+              27,
+              15,
+              8,
+              16,
+              11,
+              36
+            ],
+            "deck": [
+              2,
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 1,
+              "mp": 0
+            },
+            "river": [
+              34,
+              8,
+              1,
+              13,
+              12,
+              29,
+              2
+            ],
+            "deck": [
+              19,
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        }
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 13,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "israel",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 4,
+              "ip": 7,
+              "mp": 9
+            },
+            "river": [
+              2,
+              35,
+              27,
+              15,
+              8,
+              16,
+              11
+            ],
+            "deck": [
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 5,
+              "ip": 3,
+              "mp": 5
+            },
+            "river": [
+              19,
+              34,
+              8,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect)."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.15,
+        "{\"card_id\": 2, \"type\": \"Play Card\"}": 0.1,
+        "{\"card_id\": 35, \"type\": \"Play Card\"}": 0.15,
+        "{\"card_id\": 27, \"type\": \"Play Card\"}": 0.1,
+        "{\"card_id\": 15, \"type\": \"Play Card\"}": 0.1,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.15,
+        "{\"card_id\": 16, \"type\": \"Play Card\"}": 0.15,
+        "{\"card_id\": 11, \"type\": \"Play Card\"}": 0.1
+      }
+    },
+    {
+      "ply": 14,
+      "side": "iran",
+      "action": {
+        "type": "Order Terror Attack"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "iran",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 4,
+              "ip": 7,
+              "mp": 9
+            },
+            "river": [
+              2,
+              35,
+              27,
+              15,
+              8,
+              16,
+              11
+            ],
+            "deck": [
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 5,
+              "ip": 3,
+              "mp": 5
+            },
+            "river": [
+              19,
+              34,
+              8,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.1,
+        "{\"card_id\": 19, \"type\": \"Play Card\"}": 0.15,
+        "{\"card_id\": 34, \"type\": \"Play Card\"}": 0.1,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.15,
+        "{\"card_id\": 1, \"type\": \"Play Card\"}": 0.14,
+        "{\"card_id\": 12, \"type\": \"Play Card\"}": 0.1,
+        "{\"card_id\": 29, \"type\": \"Play Card\"}": 0.1,
+        "{\"type\": \"Order Terror Attack\"}": 0.16
+      }
+    },
+    {
+      "ply": 15,
+      "side": "iran",
+      "action": {
+        "type": "Order Terror Attack"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "iran",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 4,
+              "ip": 7,
+              "mp": 9
+            },
+            "river": [
+              2,
+              35,
+              27,
+              15,
+              8,
+              16,
+              11
+            ],
+            "deck": [
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 5,
+              "ip": 2,
+              "mp": 4
+            },
+            "river": [
+              19,
+              34,
+              8,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2)."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.15,
+        "{\"card_id\": 19, \"type\": \"Play Card\"}": 0.15,
+        "{\"card_id\": 34, \"type\": \"Play Card\"}": 0.11,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.15,
+        "{\"card_id\": 1, \"type\": \"Play Card\"}": 0.15,
+        "{\"card_id\": 29, \"type\": \"Play Card\"}": 0.11,
+        "{\"type\": \"Order Terror Attack\"}": 0.18
+      }
+    },
+    {
+      "ply": 16,
+      "side": "iran",
+      "action": {
+        "type": "Play Card",
+        "card_id": 19
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "iran",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 4,
+              "ip": 7,
+              "mp": 9
+            },
+            "river": [
+              2,
+              35,
+              27,
+              15,
+              8,
+              16,
+              11
+            ],
+            "deck": [
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 5,
+              "ip": 1,
+              "mp": 3
+            },
+            "river": [
+              19,
+              34,
+              8,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              16,
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 0
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2)."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "covert"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.15,
+        "{\"card_id\": 19, \"type\": \"Play Card\"}": 0.16,
+        "{\"card_id\": 34, \"type\": \"Play Card\"}": 0.11,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.16,
+        "{\"card_id\": 1, \"type\": \"Play Card\"}": 0.15,
+        "{\"card_id\": 29, \"type\": \"Play Card\"}": 0.11,
+        "{\"type\": \"Order Terror Attack\"}": 0.16
+      }
+    },
+    {
+      "ply": 17,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "iran",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": true
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 4,
+              "ip": 7,
+              "mp": 9
+            },
+            "river": [
+              2,
+              35,
+              27,
+              15,
+              8,
+              16,
+              11
+            ],
+            "deck": [
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 3
+            },
+            "river": [
+              16,
+              34,
+              8,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 3
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose"
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "requires"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.53,
+        "{\"type\": \"Order Terror Attack\"}": 0.47
+      }
+    },
+    {
+      "ply": 18,
+      "side": "israel",
+      "action": {
+        "type": "Play Card",
+        "card_id": 16
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "israel",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": true
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 4,
+              "ip": 7,
+              "mp": 9
+            },
+            "river": [
+              2,
+              35,
+              27,
+              15,
+              8,
+              16,
+              11
+            ],
+            "deck": [
+              22,
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 3
+            },
+            "river": [
+              16,
+              34,
+              8,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 1,
+            "iran": 3
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty",
+            "requires"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.1,
+        "{\"card_id\": 2, \"type\": \"Play Card\"}": 0.1,
+        "{\"card_id\": 35, \"type\": \"Play Card\"}": 0.16,
+        "{\"card_id\": 27, \"type\": \"Play Card\"}": 0.1,
+        "{\"card_id\": 15, \"type\": \"Play Card\"}": 0.1,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.16,
+        "{\"card_id\": 16, \"type\": \"Play Card\"}": 0.18,
+        "{\"card_id\": 11, \"type\": \"Play Card\"}": 0.1
+      }
+    },
+    {
+      "ply": 19,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "israel",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": true
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 4,
+              "ip": 4,
+              "mp": 9
+            },
+            "river": [
+              22,
+              2,
+              35,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 3
+            },
+            "river": [
+              16,
+              34,
+              8,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 2,
+            "iran": 3
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition"
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": [
+            "covert"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 20,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "iran",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": true
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 4,
+              "ip": 4,
+              "mp": 9
+            },
+            "river": [
+              22,
+              2,
+              35,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 3
+            },
+            "river": [
+              16,
+              34,
+              8,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 2,
+            "iran": 3
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": [
+            "covert"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.51,
+        "{\"type\": \"Order Terror Attack\"}": 0.49
+      }
+    },
+    {
+      "ply": 21,
+      "side": "israel",
+      "action": {
+        "type": "Play Card",
+        "card_id": 22
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "israel",
+          "phase": "afternoon",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 4,
+              "ip": 4,
+              "mp": 9
+            },
+            "river": [
+              22,
+              2,
+              35,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              26,
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 3
+            },
+            "river": [
+              16,
+              34,
+              8,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 2,
+            "iran": 3
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes."
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": [
+            "covert"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.16,
+        "{\"card_id\": 22, \"type\": \"Play Card\"}": 0.18,
+        "{\"card_id\": 2, \"type\": \"Play Card\"}": 0.1,
+        "{\"card_id\": 35, \"type\": \"Play Card\"}": 0.18,
+        "{\"card_id\": 15, \"type\": \"Play Card\"}": 0.1,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.18,
+        "{\"card_id\": 11, \"type\": \"Play Card\"}": 0.1
+      }
+    },
+    {
+      "ply": 22,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "israel",
+          "phase": "afternoon",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 4,
+              "mp": 9
+            },
+            "river": [
+              26,
+              2,
+              35,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 3
+            },
+            "river": [
+              16,
+              34,
+              8,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 2,
+            "iran": 6
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose"
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": [
+            "dirty",
+            "requires"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 23,
+      "side": "iran",
+      "action": {
+        "type": "Play Card",
+        "card_id": 8
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "iran",
+          "phase": "afternoon",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": false
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 4,
+              "mp": 9
+            },
+            "river": [
+              26,
+              2,
+              35,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 3
+            },
+            "river": [
+              16,
+              34,
+              8,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              32,
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 2,
+            "iran": 6
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": [
+            "dirty",
+            "requires"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.17,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.32,
+        "{\"card_id\": 1, \"type\": \"Play Card\"}": 0.26,
+        "{\"type\": \"Order Terror Attack\"}": 0.25
+      }
+    },
+    {
+      "ply": 24,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "iran",
+          "phase": "afternoon",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": true
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 4,
+              "mp": 9
+            },
+            "river": [
+              26,
+              2,
+              35,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 1
+            },
+            "river": [
+              32,
+              16,
+              34,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 2,
+            "iran": 7
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent"
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "backfire"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.51,
+        "{\"type\": \"Order Terror Attack\"}": 0.49
+      }
+    },
+    {
+      "ply": 25,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "israel",
+          "phase": "afternoon",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": true
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 4,
+              "mp": 9
+            },
+            "river": [
+              26,
+              2,
+              35,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 1
+            },
+            "river": [
+              32,
+              16,
+              34,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 2,
+            "iran": 7
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "backfire"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 26,
+      "side": "israel",
+      "action": {
+        "type": "Play Card",
+        "card_id": 35
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "israel",
+          "phase": "night",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 4,
+              "mp": 9
+            },
+            "river": [
+              26,
+              2,
+              35,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              29,
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 1
+            },
+            "river": [
+              32,
+              16,
+              34,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 2,
+            "iran": 7
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "backfire"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.23,
+        "{\"card_id\": 2, \"type\": \"Play Card\"}": 0.17,
+        "{\"card_id\": 35, \"type\": \"Play Card\"}": 0.3,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.3
+      }
+    },
+    {
+      "ply": 27,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "israel",
+          "phase": "night",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 4,
+              "mp": 5
+            },
+            "river": [
+              29,
+              26,
+              2,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22,
+              35
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 1
+            },
+            "river": [
+              32,
+              16,
+              34,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 2,
+            "iran": 7
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes.",
+          "israel played card 35: Technology Transfer"
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": [
+            "backfire"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 28,
+      "side": "iran",
+      "action": {
+        "type": "Play Card",
+        "card_id": 1
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "iran",
+          "phase": "night",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": false
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 4,
+              "mp": 5
+            },
+            "river": [
+              29,
+              26,
+              2,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22,
+              35
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 2,
+              "ip": 1,
+              "mp": 1
+            },
+            "river": [
+              32,
+              16,
+              34,
+              1,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              14,
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 2,
+            "iran": 7
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes.",
+          "israel played card 35: Technology Transfer",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": [
+            "backfire"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.32,
+        "{\"card_id\": 1, \"type\": \"Play Card\"}": 0.34,
+        "{\"type\": \"Order Terror Attack\"}": 0.34
+      }
+    },
+    {
+      "ply": 29,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "iran",
+          "phase": "night",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": true
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 4,
+              "mp": 5
+            },
+            "river": [
+              29,
+              26,
+              2,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22,
+              35
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 1,
+              "ip": 1,
+              "mp": 1
+            },
+            "river": [
+              14,
+              32,
+              16,
+              34,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8,
+              1
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 3,
+            "iran": 7
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes.",
+          "israel played card 35: Technology Transfer",
+          "israel passes.",
+          "Israel domestic +1",
+          "iran played card 1: Ahmadinejad Speech"
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "backfire"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.5,
+        "{\"type\": \"Order Terror Attack\"}": 0.5
+      }
+    },
+    {
+      "ply": 30,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 2,
+          "current_player": "israel",
+          "phase": "night",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": true
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 4,
+              "mp": 5
+            },
+            "river": [
+              29,
+              26,
+              2,
+              27,
+              15,
+              8,
+              11
+            ],
+            "deck": [
+              19,
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22,
+              35
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 1,
+              "ip": 1,
+              "mp": 1
+            },
+            "river": [
+              14,
+              32,
+              16,
+              34,
+              13,
+              12,
+              29
+            ],
+            "deck": [
+              23,
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8,
+              1
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 3,
+            "iran": 7
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes.",
+          "israel played card 35: Technology Transfer",
+          "israel passes.",
+          "Israel domestic +1",
+          "iran played card 1: Ahmadinejad Speech",
+          "iran passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "backfire"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 31,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 3,
+          "current_player": "israel",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 5,
+              "ip": 5,
+              "mp": 10
+            },
+            "river": [
+              19,
+              29,
+              26,
+              2,
+              27,
+              15,
+              8
+            ],
+            "deck": [
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22,
+              35,
+              11
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 3,
+              "ip": 0,
+              "mp": 1
+            },
+            "river": [
+              23,
+              14,
+              32,
+              16,
+              34,
+              13,
+              12
+            ],
+            "deck": [
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8,
+              1,
+              29
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 3,
+            "iran": 7
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes.",
+          "israel played card 35: Technology Transfer",
+          "israel passes.",
+          "Israel domestic +1",
+          "iran played card 1: Ahmadinejad Speech",
+          "iran passes.",
+          "israel passes.",
+          "israel gained from opinions: +5PP, +5IP, +10MP",
+          "iran gained from opinions: +3PP, +1IP, +1MP",
+          "Strategic Events: roll 5 -> Cyber Incident",
+          "Strategic Event (assist): israel rolled 1 (no effect).",
+          "Strategic Event (assist): iran rolled 1 (no effect)."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "backfire"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.14,
+        "{\"card_id\": 19, \"type\": \"Play Card\"}": 0.14,
+        "{\"card_id\": 29, \"type\": \"Play Card\"}": 0.14,
+        "{\"card_id\": 26, \"type\": \"Play Card\"}": 0.08,
+        "{\"card_id\": 2, \"type\": \"Play Card\"}": 0.14,
+        "{\"card_id\": 27, \"type\": \"Play Card\"}": 0.14,
+        "{\"card_id\": 15, \"type\": \"Play Card\"}": 0.08,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.14
+      }
+    },
+    {
+      "ply": 32,
+      "side": "iran",
+      "action": {
+        "type": "Play Card",
+        "card_id": 23
+      },
+      "state": {
+        "turn": {
+          "turn_number": 3,
+          "current_player": "iran",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 5,
+              "ip": 5,
+              "mp": 10
+            },
+            "river": [
+              19,
+              29,
+              26,
+              2,
+              27,
+              15,
+              8
+            ],
+            "deck": [
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22,
+              35,
+              11
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 3,
+              "ip": 0,
+              "mp": 1
+            },
+            "river": [
+              23,
+              14,
+              32,
+              16,
+              34,
+              13,
+              12
+            ],
+            "deck": [
+              25,
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8,
+              1,
+              29
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 3,
+            "iran": 7
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes.",
+          "israel played card 35: Technology Transfer",
+          "israel passes.",
+          "Israel domestic +1",
+          "iran played card 1: Ahmadinejad Speech",
+          "iran passes.",
+          "israel passes.",
+          "israel gained from opinions: +5PP, +5IP, +10MP",
+          "iran gained from opinions: +3PP, +1IP, +1MP",
+          "Strategic Events: roll 5 -> Cyber Incident",
+          "Strategic Event (assist): israel rolled 1 (no effect).",
+          "Strategic Event (assist): iran rolled 1 (no effect).",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "backfire"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.33,
+        "{\"card_id\": 23, \"type\": \"Play Card\"}": 0.34,
+        "{\"card_id\": 14, \"type\": \"Play Card\"}": 0.33
+      }
+    },
+    {
+      "ply": 33,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 3,
+          "current_player": "iran",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": true
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 5,
+              "ip": 5,
+              "mp": 10
+            },
+            "river": [
+              19,
+              29,
+              26,
+              2,
+              27,
+              15,
+              8
+            ],
+            "deck": [
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22,
+              35,
+              11
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 0,
+              "mp": 1
+            },
+            "river": [
+              25,
+              14,
+              32,
+              16,
+              34,
+              13,
+              12
+            ],
+            "deck": [
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8,
+              1,
+              29,
+              23
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 5,
+            "iran": 7
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes.",
+          "israel played card 35: Technology Transfer",
+          "israel passes.",
+          "Israel domestic +1",
+          "iran played card 1: Ahmadinejad Speech",
+          "iran passes.",
+          "israel passes.",
+          "israel gained from opinions: +5PP, +5IP, +10MP",
+          "iran gained from opinions: +3PP, +1IP, +1MP",
+          "Strategic Events: roll 5 -> Cyber Incident",
+          "Strategic Event (assist): israel rolled 1 (no effect).",
+          "Strategic Event (assist): iran rolled 1 (no effect).",
+          "israel passes.",
+          "Israel domestic +2",
+          "iran played card 23: Palestinian Unrest"
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 34,
+      "side": "israel",
+      "action": {
+        "type": "Play Card",
+        "card_id": 19
+      },
+      "state": {
+        "turn": {
+          "turn_number": 3,
+          "current_player": "israel",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": true
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 5,
+              "ip": 5,
+              "mp": 10
+            },
+            "river": [
+              19,
+              29,
+              26,
+              2,
+              27,
+              15,
+              8
+            ],
+            "deck": [
+              25,
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22,
+              35,
+              11
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 0,
+              "mp": 1
+            },
+            "river": [
+              25,
+              14,
+              32,
+              16,
+              34,
+              13,
+              12
+            ],
+            "deck": [
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8,
+              1,
+              29,
+              23
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 5,
+            "iran": 7
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes.",
+          "israel played card 35: Technology Transfer",
+          "israel passes.",
+          "Israel domestic +1",
+          "iran played card 1: Ahmadinejad Speech",
+          "iran passes.",
+          "israel passes.",
+          "israel gained from opinions: +5PP, +5IP, +10MP",
+          "iran gained from opinions: +3PP, +1IP, +1MP",
+          "Strategic Events: roll 5 -> Cyber Incident",
+          "Strategic Event (assist): israel rolled 1 (no effect).",
+          "Strategic Event (assist): iran rolled 1 (no effect).",
+          "israel passes.",
+          "Israel domestic +2",
+          "iran played card 23: Palestinian Unrest",
+          "iran passes."
+        ],
+        "last_act": {
+          "side": "iran",
+          "tags": [
+            "dirty"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.13,
+        "{\"card_id\": 19, \"type\": \"Play Card\"}": 0.15,
+        "{\"card_id\": 29, \"type\": \"Play Card\"}": 0.14,
+        "{\"card_id\": 26, \"type\": \"Play Card\"}": 0.09,
+        "{\"card_id\": 2, \"type\": \"Play Card\"}": 0.14,
+        "{\"card_id\": 27, \"type\": \"Play Card\"}": 0.14,
+        "{\"card_id\": 15, \"type\": \"Play Card\"}": 0.08,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.13
+      }
+    },
+    {
+      "ply": 35,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 3,
+          "current_player": "israel",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": true
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 5,
+              "mp": 10
+            },
+            "river": [
+              25,
+              29,
+              26,
+              2,
+              27,
+              15,
+              8
+            ],
+            "deck": [
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22,
+              35,
+              11,
+              19
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 0,
+              "mp": 1
+            },
+            "river": [
+              25,
+              14,
+              32,
+              16,
+              34,
+              13,
+              12
+            ],
+            "deck": [
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8,
+              1,
+              29,
+              23
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 5,
+            "iran": 8
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes.",
+          "israel played card 35: Technology Transfer",
+          "israel passes.",
+          "Israel domestic +1",
+          "iran played card 1: Ahmadinejad Speech",
+          "iran passes.",
+          "israel passes.",
+          "israel gained from opinions: +5PP, +5IP, +10MP",
+          "iran gained from opinions: +3PP, +1IP, +1MP",
+          "Strategic Events: roll 5 -> Cyber Incident",
+          "Strategic Event (assist): israel rolled 1 (no effect).",
+          "Strategic Event (assist): iran rolled 1 (no effect).",
+          "israel passes.",
+          "Israel domestic +2",
+          "iran played card 23: Palestinian Unrest",
+          "iran passes.",
+          "Iran domestic +1",
+          "israel played card 19: Incriminating Photos"
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": [
+            "dirty"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 36,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "state": {
+        "turn": {
+          "turn_number": 3,
+          "current_player": "iran",
+          "phase": "morning",
+          "per_impulse_card_played": {
+            "israel": true,
+            "iran": true
+          },
+          "consecutive_passes": 1
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 5,
+              "mp": 10
+            },
+            "river": [
+              25,
+              29,
+              26,
+              2,
+              27,
+              15,
+              8
+            ],
+            "deck": [
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22,
+              35,
+              11,
+              19
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 0,
+              "mp": 1
+            },
+            "river": [
+              25,
+              14,
+              32,
+              16,
+              34,
+              13,
+              12
+            ],
+            "deck": [
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8,
+              1,
+              29,
+              23
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 5,
+            "iran": 8
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes.",
+          "israel played card 35: Technology Transfer",
+          "israel passes.",
+          "Israel domestic +1",
+          "iran played card 1: Ahmadinejad Speech",
+          "iran passes.",
+          "israel passes.",
+          "israel gained from opinions: +5PP, +5IP, +10MP",
+          "iran gained from opinions: +3PP, +1IP, +1MP",
+          "Strategic Events: roll 5 -> Cyber Incident",
+          "Strategic Event (assist): israel rolled 1 (no effect).",
+          "Strategic Event (assist): iran rolled 1 (no effect).",
+          "israel passes.",
+          "Israel domestic +2",
+          "iran played card 23: Palestinian Unrest",
+          "iran passes.",
+          "Iran domestic +1",
+          "israel played card 19: Incriminating Photos",
+          "israel passes."
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": [
+            "dirty"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 37,
+      "side": "israel",
+      "action": {
+        "type": "Play Card",
+        "card_id": 29
+      },
+      "state": {
+        "turn": {
+          "turn_number": 3,
+          "current_player": "israel",
+          "phase": "afternoon",
+          "per_impulse_card_played": {
+            "israel": false,
+            "iran": false
+          },
+          "consecutive_passes": 0
+        },
+        "players": {
+          "israel": {
+            "resources": {
+              "pp": 1,
+              "ip": 5,
+              "mp": 10
+            },
+            "river": [
+              25,
+              29,
+              26,
+              2,
+              27,
+              15,
+              8
+            ],
+            "deck": [
+              37,
+              3,
+              33,
+              28,
+              10,
+              13,
+              12,
+              30,
+              38,
+              32,
+              18,
+              14,
+              1,
+              17,
+              31,
+              23,
+              21,
+              6,
+              5,
+              20,
+              24,
+              7,
+              9,
+              4
+            ],
+            "discard": [
+              34,
+              36,
+              16,
+              22,
+              35,
+              11,
+              19
+            ]
+          },
+          "iran": {
+            "resources": {
+              "pp": 0,
+              "ip": 0,
+              "mp": 1
+            },
+            "river": [
+              25,
+              14,
+              32,
+              16,
+              34,
+              13,
+              12
+            ],
+            "deck": [
+              31,
+              27,
+              26,
+              28,
+              24,
+              18,
+              7,
+              11,
+              21,
+              4,
+              30,
+              20,
+              9,
+              33,
+              10,
+              17,
+              6,
+              15,
+              5,
+              22
+            ],
+            "discard": [
+              3,
+              2,
+              19,
+              8,
+              1,
+              29,
+              23
+            ]
+          }
+        },
+        "opinion": {
+          "domestic": {
+            "israel": 5,
+            "iran": 8
+          },
+          "third_parties": {
+            "UN": -1,
+            "US": 1
+          },
+          "third_party": {
+            "saudi": -1,
+            "russia": 1
+          }
+        },
+        "upgrades": {},
+        "ballistic_missiles": {},
+        "active_events_queue": [
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 4,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          },
+          {
+            "type": "terror_attack_resolution",
+            "scheduled_for": 5,
+            "side": "iran",
+            "intensity": 2
+          }
+        ],
+        "squadrons": {
+          "israel": {},
+          "iran": {}
+        },
+        "log": [
+          "Initialized and dealt a new river for israel.",
+          "Initialized and dealt a new river for iran.",
+          "Israel domestic +1",
+          "israel played card 34: Speech of Support",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 3: Appeal to the Faithful",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "iran passes.",
+          "israel passes.",
+          "israel passes.",
+          "iran passes.",
+          "israel gained from opinions: +4PP, +7IP, +9MP",
+          "iran gained from opinions: +5PP, +3IP, +5MP",
+          "Strategic Events: roll 6 -> Regional Escalation",
+          "Strategic Event (assist): israel rolled 2 (no effect).",
+          "Strategic Event (assist): iran rolled 3 (no effect).",
+          "israel passes.",
+          "Terror Attack queued (intensity 2).",
+          "Terror Attack queued (intensity 2).",
+          "Iran domestic +3",
+          "iran played card 19: Major Expose",
+          "iran passes.",
+          "Israel domestic +1",
+          "israel played card 16: Funding Opposition",
+          "israel passes.",
+          "iran passes.",
+          "Iran domestic +3",
+          "israel played card 22: Major Expose",
+          "israel passes.",
+          "Iran domestic +1",
+          "iran played card 8: Crackdown on Dissent",
+          "iran passes.",
+          "israel passes.",
+          "israel played card 35: Technology Transfer",
+          "israel passes.",
+          "Israel domestic +1",
+          "iran played card 1: Ahmadinejad Speech",
+          "iran passes.",
+          "israel passes.",
+          "israel gained from opinions: +5PP, +5IP, +10MP",
+          "iran gained from opinions: +3PP, +1IP, +1MP",
+          "Strategic Events: roll 5 -> Cyber Incident",
+          "Strategic Event (assist): israel rolled 1 (no effect).",
+          "Strategic Event (assist): iran rolled 1 (no effect).",
+          "israel passes.",
+          "Israel domestic +2",
+          "iran played card 23: Palestinian Unrest",
+          "iran passes.",
+          "Iran domestic +1",
+          "israel played card 19: Incriminating Photos",
+          "israel passes.",
+          "iran passes."
+        ],
+        "last_act": {
+          "side": "israel",
+          "tags": [
+            "dirty"
+          ]
+        },
+        "_night_carryover": {
+          "israel": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          },
+          "iran": {
+            "pp": 0,
+            "ip": 0,
+            "mp": 0
+          }
+        },
+        "last_night_was_stand_down": false
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 0.18,
+        "{\"card_id\": 29, \"type\": \"Play Card\"}": 0.21,
+        "{\"card_id\": 2, \"type\": \"Play Card\"}": 0.21,
+        "{\"card_id\": 27, \"type\": \"Play Card\"}": 0.2,
+        "{\"card_id\": 8, \"type\": \"Play Card\"}": 0.2
+      }
+    }
+  ]
+}

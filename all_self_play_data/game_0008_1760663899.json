@@ -1,0 +1,1266 @@
+{
+  "game_id": "game_0008_1760663899",
+  "winner": "iran",
+  "plies": [
+    {
+      "ply": 1,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 2,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 3,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 4,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 5,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 6,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 7,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 8,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 9,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 10,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 11,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 12,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 13,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 14,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 15,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 16,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 17,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 18,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 19,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 20,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 21,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 22,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 23,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 24,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 25,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 26,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 27,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 28,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 29,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 30,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 31,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 32,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 33,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 34,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 35,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 36,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 37,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 38,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 39,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 40,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 41,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 42,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 43,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 44,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 45,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 46,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 47,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 48,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 49,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 50,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 51,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 52,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 53,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 54,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 55,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 56,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 57,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 58,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 59,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 60,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 61,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 62,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 63,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 64,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 65,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 66,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 67,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 68,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 69,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 70,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 71,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 72,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 73,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 74,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 75,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 76,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 77,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 78,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 79,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 80,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 81,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 82,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 83,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 84,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 85,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 86,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 87,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 88,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 89,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 90,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 91,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 92,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 93,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 94,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 95,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 96,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 97,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 98,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 99,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 100,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 101,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 102,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 103,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 104,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 105,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 106,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 107,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 108,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 109,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 110,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 111,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 112,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 113,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 114,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 115,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 116,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 117,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 118,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 119,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 120,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 121,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 122,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 123,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 124,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 125,
+      "side": "israel",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    },
+    {
+      "ply": 126,
+      "side": "iran",
+      "action": {
+        "type": "Pass"
+      },
+      "mcts_policy": {
+        "{\"type\": \"Pass\"}": 1.0
+      }
+    }
+  ]
+}

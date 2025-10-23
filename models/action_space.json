@@ -1,0 +1,899 @@
+[
+  {
+    "type": "Pass"
+  },
+  {
+    "type": "End Impulse"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 1,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 2,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 3,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 4,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 5,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 6,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 7,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 8,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 9,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 10,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 11,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 12,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 13,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 14,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 15,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 16,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 17,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 18,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 19,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 20,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 21,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 22,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 23,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 24,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 25,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 26,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 27,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 28,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 29,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 30,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 31,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 32,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 33,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 34,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 35,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 36,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 37,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 38,
+    "_side_": "israel"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 1,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 2,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 3,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 4,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 5,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 6,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 7,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 8,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 9,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 10,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 11,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 12,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 13,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 14,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 15,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 16,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 17,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 18,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 19,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 20,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 21,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 22,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 23,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 24,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 25,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 26,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 27,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 28,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 29,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 30,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 31,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 32,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 33,
+    "_side_": "iran"
+  },
+  {
+    "type": "Play Card",
+    "card_id": 34,
+    "_side_": "iran"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Natanz Uranium Enrichment Facility"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Natanz Uranium Enrichment Facility"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Natanz Uranium Enrichment Facility"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Arak Heavy Water Reactor"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Arak Heavy Water Reactor"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Arak Heavy Water Reactor"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Esfahan Conversion Facility"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Esfahan Conversion Facility"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Esfahan Conversion Facility"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Tehran Research Reactor"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Tehran Research Reactor"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Tehran Research Reactor"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Bushehr Nuclear Plant"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Bushehr Nuclear Plant"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Bushehr Nuclear Plant"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Fuel Manufacturing Plant"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Fuel Manufacturing Plant"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Fuel Manufacturing Plant"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Zirconium Production Plant"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Zirconium Production Plant"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Zirconium Production Plant"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Parchin Military Complex"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Parchin Military Complex"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Parchin Military Complex"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Fordow Enrichment Site"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Fordow Enrichment Site"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Fordow Enrichment Site"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Qom Uranium Enrichment Facility"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Qom Uranium Enrichment Facility"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Qom Uranium Enrichment Facility"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Abadan Oil Refinery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Abadan Oil Refinery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Abadan Oil Refinery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Kharg Island Oil Terminal"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Kharg Island Oil Terminal"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Kharg Island Oil Terminal"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Generic Oil Refinery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Generic Oil Refinery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Generic Oil Refinery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Arak Oil Refinery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Arak Oil Refinery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Arak Oil Refinery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Kermanshah Oil Refinery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Kermanshah Oil Refinery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Kermanshah Oil Refinery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Tabriz Oil Refinery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Tabriz Oil Refinery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Tabriz Oil Refinery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Tehran Oil Refinery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Tehran Oil Refinery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Tehran Oil Refinery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Shiraz Oil Refinery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Shiraz Oil Refinery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Shiraz Oil Refinery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Bandar Abbas Oil Refinery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Bandar Abbas Oil Refinery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Bandar Abbas Oil Refinery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Isfahan Oil Refinery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Isfahan Oil Refinery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Isfahan Oil Refinery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Lavan Island Oil Refinery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Lavan Island Oil Refinery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Lavan Island Oil Refinery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Generic Oil Terminal"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Generic Oil Terminal"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Generic Oil Terminal"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Sirri Island Oil Terminal"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Sirri Island Oil Terminal"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Sirri Island Oil Terminal"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Lavan Island Oil Terminal"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Lavan Island Oil Terminal"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Lavan Island Oil Terminal"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Ras Bahregan Oil Terminal"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Ras Bahregan Oil Terminal"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Ras Bahregan Oil Terminal"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Neka Oil Terminal"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Neka Oil Terminal"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Neka Oil Terminal"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Generic Tactical Airbase"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Generic Tactical Airbase"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Generic Tactical Airbase"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "TAB 1 Mehrabad"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "TAB 1 Mehrabad"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "TAB 1 Mehrabad"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "TAB 2 Tabriz"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "TAB 2 Tabriz"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "TAB 2 Tabriz"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "TAB 3 Shahrokhi (Hamadan)"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "TAB 3 Shahrokhi (Hamadan)"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "TAB 3 Shahrokhi (Hamadan)"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "TAB 4 Vahdati (Dezful)"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "TAB 4 Vahdati (Dezful)"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "TAB 4 Vahdati (Dezful)"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "TAB 5 Omidiyeh"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "TAB 5 Omidiyeh"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "TAB 5 Omidiyeh"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "TAB 6 Bushehr Airport"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "TAB 6 Bushehr Airport"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "TAB 6 Bushehr Airport"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "TAB 7 Shiraz"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "TAB 7 Shiraz"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "TAB 7 Shiraz"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "TAB 8 Khatami (Isfahan)"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "TAB 8 Khatami (Isfahan)"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "TAB 8 Khatami (Isfahan)"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "TAB 9 Bandar Abbas"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "TAB 9 Bandar Abbas"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "TAB 9 Bandar Abbas"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "TAB 10 Chahbahar"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "TAB 10 Chahbahar"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "TAB 10 Chahbahar"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Generic Buk-M1 Battery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Generic Buk-M1 Battery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Generic Buk-M1 Battery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Generic HQ-2J/Sayyad Battery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Generic HQ-2J/Sayyad Battery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Generic HQ-2J/Sayyad Battery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Generic HQ-9 Battery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Generic HQ-9 Battery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Generic HQ-9 Battery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Generic I-Hawk/Sejil Battery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Generic I-Hawk/Sejil Battery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Generic I-Hawk/Sejil Battery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Generic Kub-M3 Battery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Generic Kub-M3 Battery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Generic Kub-M3 Battery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Generic S-200/Ghareh Battery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Generic S-200/Ghareh Battery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Generic S-200/Ghareh Battery"
+  },
+  {
+    "type": "Order Airstrike",
+    "target": "Generic S-300 Battery"
+  },
+  {
+    "type": "Order Ballistic Missile",
+    "target": "Generic S-300 Battery"
+  },
+  {
+    "type": "Order Special Warfare",
+    "target": "Generic S-300 Battery"
+  },
+  {
+    "type": "Order Terror Attack"
+  }
+]
